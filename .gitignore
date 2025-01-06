@@ -38,3 +38,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# specific pages and components
+/app/articles/
+/app/projects/
+/components/Testimonials.js
+/components/Articles.js
