@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import { motion } from "motion/react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from "next/image";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
+import { ThemeContext } from "@/context/ThemeContext";
 
 const ProjectsSection = () => {
   const updatedProjects = [
@@ -48,30 +49,42 @@ const ProjectsSection = () => {
     },
   ];
 
+  const { theme } = useContext(ThemeContext);
+  const isDarkMode = theme === "dark";
+
   return (
-    <section className="mb-5 min-h-screen flex flex-col justify-center">
+    <section className="min-h-screen flex flex-col justify-center">
       <div className="flex flex-col items-center justify-between gap-8 lg:flex-row lg:gap-0">
         <motion.div
           initial={{ opacity: 0, x: -50, y: 50 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <h6 className="bg-gradient-to-r from-blue-400 via-green-500 bg-clip-text text-transparent to-blue-600 mb-4 text-xl font-bold">
+          <h6
+            className={`bg-clip-text text-transparent mb-4 text-xl font-bold ${isDarkMode
+                ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
+                : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
+              }`}
+          >
             BOUNDLESS CREATIONS
           </h6>
+
           <h2 className="mx-auto mb-10 max-w-[600px] text-4xl font-bold leading-[120%] tracking-[0.5px] lg:text-6xl">
             Building Beyond Boundaries
           </h2>
         </motion.div>
         <a href="/projects">
           <motion.div
-            className="relative h-[60px] bg-gradient-to-r from-blue-400 via-green-500 to-blue-600 w-[200px]"
+            className={`relative h-[60px] w-[200px] ${isDarkMode
+              ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
+              : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
+              }`}
             initial={{ opacity: 0, y: 50, x: 50 }}
             animate={{ opacity: 1, y: 0, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <button
-              className="absolute h-[62px] bg-black text-lg font-medium text-white w-[202px] transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-0 hover:translate-x-3 hover:translate-y-3"
+              className="absolute h-[62px] bg-black text-lg font-medium text-white w-[202px] transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-0 hover:translate-x-3 hover:translate-y-3 dark:bg-white dark:text-black dark:font-medium"
               style={{ right: '8px', bottom: '8px' }}
             >
               Discover More Boundless Creations
@@ -112,7 +125,7 @@ const ProjectsSection = () => {
                   backgroundColor: index === 0 || index === 1
                     ? undefined
                     : index === 5
-                      ? 'hsl(270, 70%, 80%)' 
+                      ? 'hsl(270, 70%, 80%)'
                       : `hsl(${(index * 60) % 360}, 70%, 90%)`,
                 }}
               >
@@ -133,12 +146,12 @@ const ProjectsSection = () => {
                 <a
                   href={project.link}
                   className={`py-2 px-6 rounded-lg shadow hover:scale-105 transition-transform ${index === 0 ? 'bg-gradient-to-b from-gray-700 to-gray-900' :
-                      index === 1 ? 'bg-gradient-to-b from-indigo-600 to-pink-600' :
-                        index === 2 ? 'bg-gradient-to-b from-green-400 to-green-600' : 
-                          index === 3 ? 'bg-gradient-to-b from-cyan-400 to-cyan-600' : 
-                            index === 4 ? 'bg-gradient-to-b from-blue-600 to-blue-800' :
-                              index === 5 ? 'bg-gradient-to-b from-purple-600 to-purple-800' :
-                                'bg-gradient-to-b from-purple-400 to-orange-500'
+                    index === 1 ? 'bg-gradient-to-b from-indigo-600 to-pink-600' :
+                      index === 2 ? 'bg-gradient-to-b from-green-400 to-green-600' :
+                        index === 3 ? 'bg-gradient-to-b from-cyan-400 to-cyan-600' :
+                          index === 4 ? 'bg-gradient-to-b from-blue-600 to-blue-800' :
+                            index === 5 ? 'bg-gradient-to-b from-purple-600 to-purple-800' :
+                              'bg-gradient-to-b from-purple-400 to-orange-500'
                     } text-white`}
                 >
                   View Project

@@ -1,11 +1,18 @@
-"use client"
-import React from 'react';
+"use client";
+
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import { motion } from "motion/react";
+import { ThemeContext } from "@/context/ThemeContext";
 
 const About = () => {
+  const { theme } = useContext(ThemeContext);
+  const isDarkMode = theme === "dark";
+
   return (
-    <div className="container mx-auto px-5 py-20 lg:px-20">
+    <div
+      className={`container mx-auto px-5 py-20 lg:px-20 ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'}`}
+    >
       <section id="about">
         <motion.div
           className="mb-20 flex flex-col items-start justify-between gap-8 lg:flex-row"
@@ -14,13 +21,19 @@ const About = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
+          {/* Intro Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h5 className="bg-gradient-to-r from-blue-400 via-green-500 bg-clip-text text-transparent to-blue-600 text-[22px] font-bold tracking-[4px] uppercase">
+            <h5
+              className={`bg-clip-text text-transparent text-[22px] font-bold tracking-[4px] uppercase ${isDarkMode
+                  ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
+                  : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
+                }`}
+            >
               Fullstack Developer
             </h5>
             <h2 className="mb-6 mt-2 text-[40px] font-bold leading-[1.3] tracking-[0.5px] md:text-[54px]">
@@ -28,61 +41,54 @@ const About = () => {
             </h2>
           </motion.div>
 
+          {/* Description Section */}
           <motion.p
-            className="text-xl leading-[1.8] text-gray-600 md:text-2xl lg:max-w-[50%]"
+            className={`text-xl leading-[1.8] ${isDarkMode ? 'text-gray-300' : 'text-gray-600'} md:text-2xl lg:max-w-[50%]`}
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-          I’m a full-stack Software Engineer skilled in <span className="font-medium text-black">React.js</span>, <span className="font-medium text-black">Next.js</span>, <span className="font-medium text-black">Node.js</span>, and <span className="font-medium text-black">MySQL</span> passionate about creating scalable, secure applications that enhance user experiences and drive innovation.
+            I’m a full-stack Software Engineer skilled in <span className={`${isDarkMode ? 'text-blue-400' : 'text-black'} font-medium`}>React.js</span>, <span className={`${isDarkMode ? 'text-blue-400' : 'text-black'} font-medium`}>Next.js</span>, <span className={`${isDarkMode ? 'text-blue-400' : 'text-black'} font-medium`}>Node.js</span>, and <span className={`${isDarkMode ? 'text-blue-400' : 'text-black'} font-medium`}>MySQL</span>, passionate about creating scalable, secure applications that enhance user experiences and drive innovation.
           </motion.p>
         </motion.div>
 
-        {/* <div
-          className="grid gap-6 lg:gap-8"
-          style={{ opacity: 1 }}
+        {/* Image Section */}
+        {/* <motion.div
+          className="mt-12 flex justify-center lg:justify-end"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.6 }}
         >
           <Image
-            alt="Main Image"
-            loading="lazy"
-            width="1020"
-            height="1020"
-            decoding="async"
-            className="col-span-2 w-full rounded-lg shadow-lg xl:col-span-1 xl:col-start-1 xl:row-span-2 xl:row-start-1 xl:aspect-[9/16] xl:h-full xl:object-cover"
-            src={null}
+            src="/profile-image.jpg"
+            alt="About Me"
+            width={400}
+            height={400}
+            className="rounded-full border-4 border-blue-400 shadow-lg"
           />
-          <Image
-            alt="Secondary Image"
-            loading="lazy"
-            width="1020"
-            height="1020"
-            decoding="async"
-            className="col-span-2 w-full rounded-lg shadow-lg xl:col-start-2 xl:col-end-4 xl:row-start-1 xl:row-end-3 xl:h-full xl:w-auto xl:object-cover"
-            src={null}
-          />
-          <Image
-            alt="Additional Image 1"
-            loading="lazy"
-            width="1280"
-            height="960"
-            decoding="async"
-            className="col-span-1 w-full rounded-lg shadow-lg xl:col-span-1 xl:col-start-4 xl:row-start-1 xl:row-end-2 xl:h-full xl:w-auto xl:object-cover"
-            src={null}
-          />
-          <Image
-            alt="Additional Image 2"
-            loading="lazy"
-            width="1280"
-            height="960"
-            decoding="async"
-            className="col-span-1 w-full rounded-lg shadow-lg xl:col-span-1 xl:col-start-4 xl:row-start-2 xl:row-end-3 xl:h-full xl:w-auto xl:object-cover"
-            src={null}
-          />
-        </div> */}
+        </motion.div> */}
+
+        {/* Skills Section */}
+        <motion.div
+          className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          {['React.js', 'Next.js', 'Node.js', 'MySQL', 'JavaScipt', 'Tailwind CSS', 'AWS', 'MongoDB'].map((skill, index) => (
+            <div
+              key={index}
+              className={`flex items-center justify-center rounded-md py-4 px-6 shadow-md ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}
+            >
+              <span className="text-lg font-semibold">{skill}</span>
+            </div>
+          ))}
+        </motion.div>
       </section>
     </div>
-
   );
 };
 

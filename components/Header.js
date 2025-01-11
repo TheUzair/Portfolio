@@ -1,26 +1,27 @@
 "use client";
 
+import React, { useContext } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button"; 
-import { Menu, Sun, Moon } from "lucide-react"; 
+import { Button } from "@/components/ui/button";
+import { Menu, Sun, Moon } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
-import { useState } from "react";
+import { ThemeContext } from "@/context/ThemeContext";
 
 const Header = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const isDarkMode = theme === "dark";
 
   return (
-    <div className="container mx-auto px-5 pt-5 lg:px-20">
+    <div
+      className={`container mx-auto px-5 pt-5 lg:px-20 ${isDarkMode ? "bg-black text-white" : "bg-white text-black"
+        }`}
+    >
       <motion.nav
         className="flex items-center justify-between pb-3"
         initial={{ opacity: 0, y: -20 }}
@@ -32,7 +33,12 @@ const Header = () => {
           href="/"
         >
           &lt;Next
-          <span className="bg-gradient-to-r from-blue-400 via-green-500 bg-clip-text text-transparent to-blue-600">
+          <span
+            className={`bg-clip-text text-transparent ${isDarkMode
+              ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
+              : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
+              }`}
+          >
             Mode /&gt;
           </span>
         </Link>
@@ -43,7 +49,10 @@ const Header = () => {
               <Menu className="h-6 w-6" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-48">
+          <DropdownMenuContent
+            className={`w-48 ${isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+              }`}
+          >
             <DropdownMenuItem asChild>
               <Link href="/#about">About</Link>
             </DropdownMenuItem>
@@ -63,30 +72,19 @@ const Header = () => {
         </DropdownMenu>
 
         <div className="hidden gap-6 font-medium lg:flex xl:gap-8 items-center">
-          <Link
-            className="font-bold my-5 transition-opacity duration-75 hover:opacity-50"
-            href="/#about"
-          >
-            About
-          </Link>
-          <Link
-            className="font-bold my-5 transition-opacity duration-75 hover:opacity-50"
-            href="/#services"
-          >
-            Services
-          </Link>
-          <Link
-            className="font-bold my-5 transition-opacity duration-75 hover:opacity-50"
-            href="/projects"
-          >
-            Projects
-          </Link>
-          <Link
-            className="font-bold my-5 transition-opacity duration-75 hover:opacity-50"
-            href="/articles"
-          >
-            Articles
-          </Link>
+          {["About", "Services", "Projects", "Articles"].map((item) => (
+            <Link
+              key={item}
+              className="font-bold my-5 transition-opacity duration-75 hover:opacity-50"
+              href={
+                item === "Projects" || item === "Articles"
+                  ? `/${item.toLowerCase()}`
+                  : `/#${item.toLowerCase()}`
+              }
+            >
+              {item}
+            </Link>
+          ))}
           <Link
             className="font-bold my-5 flex items-center gap-3 transition-opacity duration-75 hover:opacity-50"
             href="/contact"
@@ -107,8 +105,16 @@ const Header = () => {
             </svg>
           </Link>
 
-          <Button variant="ghost" onClick={toggleTheme}>
-            {isDarkMode ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
+          <Button
+            variant="ghost"
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+          >
+            {isDarkMode ? (
+              <Sun className="h-6 w-6 text-yellow-500" />
+            ) : (
+              <Moon className="h-6 w-6 text-gray-700" />
+            )}
           </Button>
         </div>
       </motion.nav>

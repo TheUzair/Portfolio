@@ -1,15 +1,20 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
-import { motion } from "motion/react"
+
+import React, { useContext } from "react";
+import { motion } from "motion/react";
 import Image from "next/image";
-import { Card } from "@/components/ui/card"
+import { Card } from "@/components/ui/card";
 import ProjectsSection from "./ProjectsSection";
+import { ThemeContext } from "@/context/ThemeContext";
 
 const Services = () => {
+  const { theme } = useContext(ThemeContext);
+  const isDarkMode = theme === "dark";
+
   return (
     <motion.div
       id="services"
-      className="container mx-auto px-5 pt-5 lg:px-20"
+      className={`container mx-auto px-5 pt-5 lg:px-20 ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'}`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -32,7 +37,6 @@ const Services = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
-
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -43,12 +47,12 @@ const Services = () => {
               alt="services icon 1"
               width={70}
               height={70}
-              src="/s1-light-quote.svg"
+              src={isDarkMode ? "/s1-dark-quote.svg" : "/s1-light-quote.svg"}
               className="mb-4"
             />
-            <Card className="p-8 bg-gray-100 rounded-lg shadow-lg">
+            <Card className={`p-8 rounded-lg shadow-lg ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
               <motion.h6
-                className="mb-6 text-xl font-bold leading-[110%] text-gray-800"
+                className={`mb-6 text-xl font-bold leading-[110%] ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -56,7 +60,7 @@ const Services = () => {
                 How I Can Help You Succeed
               </motion.h6>
               <motion.p
-                className="mb-4 text-gray-600 leading-6"
+                className={`mb-4 leading-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -86,13 +90,13 @@ const Services = () => {
                 ].map((service, index) => (
                   <motion.li
                     key={index}
-                    className="list-disc font-bold text-gray-700"
+                    className={`list-disc font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
                     variants={{
                       hidden: { opacity: 0, x: -10 },
                       visible: { opacity: 1, x: 0 },
                     }}
                   >
-                    <span className="text-gray-800">{service.title}:</span> <span className="font-normal text-gray-600">{service.description}</span>
+                    <span className={`${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{service.title}:</span> <span className={`font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>{service.description}</span>
                   </motion.li>
                 ))}
               </motion.ul>
@@ -109,12 +113,12 @@ const Services = () => {
               alt="services icon 2"
               width={70}
               height={70}
-              src="/s2-light-quote.svg"
+              src={isDarkMode ? "/s2-dark-quote.svg" : "/s2-light-quote.svg"}
               className="mb-4"
             />
-            <Card className="p-8 bg-gray-100 rounded-lg shadow-lg">
+            <Card className={`p-8 rounded-lg shadow-lg ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
               <motion.h6
-                className="mb-6 text-xl font-bold leading-[110%] text-gray-800"
+                className={`mb-6 text-xl font-bold leading-[110%] ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -122,7 +126,7 @@ const Services = () => {
                 Technology Toolkit
               </motion.h6>
               <motion.p
-                className="mb-4 text-gray-600 leading-6"
+                className={`mb-4 leading-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -152,14 +156,14 @@ const Services = () => {
                 ].map((item, index) => (
                   <motion.li
                     key={index}
-                    className="list-disc font-bold text-gray-700"
+                    className={`list-disc font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
                     variants={{
                       hidden: { opacity: 0, x: -10 },
                       visible: { opacity: 1, x: 0 },
                     }}
                   >
-                    <span className="text-gray-800">{item.app}:</span>{" "}
-                    <span className="font-normal text-gray-600">{item.description}</span>
+                    <span className={`${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{item.app}:</span>{" "}
+                    <span className={`font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>{item.description}</span>
                   </motion.li>
                 ))}
               </motion.ul>
@@ -176,12 +180,12 @@ const Services = () => {
               alt="services icon 3"
               width={70}
               height={70}
-              src="/s3-light-quote.svg"
+              src={isDarkMode ? "/s3-dark-quote.svg" : "/s3-light-quote.svg"}
               className="mb-4"
             />
-            <Card className="p-8 bg-gray-100 rounded-lg shadow-lg">
+            <Card className={`p-8 rounded-lg shadow-lg ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
               <motion.h6
-                className="mb-6 text-xl font-bold leading-[110%] text-gray-800"
+                className={`mb-6 text-xl font-bold leading-[110%] ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -189,7 +193,7 @@ const Services = () => {
                 What You Can Expect
               </motion.h6>
               <motion.p
-                className="mb-4 text-gray-600 leading-6"
+                className={`mb-4 leading-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -219,27 +223,24 @@ const Services = () => {
                 ].map((item, index) => (
                   <motion.li
                     key={index}
-                    className="list-disc font-bold text-gray-700"
+                    className={`list-disc font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
                     variants={{
                       hidden: { opacity: 0, x: -10 },
                       visible: { opacity: 1, x: 0 },
                     }}
                   >
-                    <span className="text-gray-800">{item.expectation}:</span>{" "}
-                    <span className="font-normal text-gray-600">{item.description}</span>
+                    <span className={`${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{item.expectation}:</span>{" "}
+                    <span className={`font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>{item.description}</span>
                   </motion.li>
                 ))}
               </motion.ul>
             </Card>
           </motion.div>
-
         </div>
       </section>
 
       <ProjectsSection />
-
     </motion.div>
-
   );
 };
 
