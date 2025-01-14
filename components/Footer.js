@@ -7,6 +7,7 @@ import { ThemeContext } from "@/context/ThemeContext";
 
 const Footer = () => {
   const { theme } = useContext(ThemeContext); 
+  const isDarkMode = theme === "dark";
   const currentYear = new Date().getFullYear();
 
   return (
