@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { ThemeContext } from "@/context/ThemeContext";
+import Link from "next/link";
 
 const ProjectsSection = () => {
   const updatedProjects = [
@@ -73,7 +74,7 @@ const ProjectsSection = () => {
             Building Beyond Boundaries
           </h2>
         </motion.div>
-        <a href="/projects">
+        <Link href="/projects">
           <motion.div
             className={`relative h-[60px] w-[200px] ${isDarkMode
               ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
@@ -90,7 +91,7 @@ const ProjectsSection = () => {
               Discover More Boundless Creations
             </button>
           </motion.div>
-        </a>
+        </Link>
       </div>
 
       <div className="relative mt-10 flex-grow">
@@ -143,7 +144,7 @@ const ProjectsSection = () => {
                 <p className={`text-sm lg:text-base px-4 max-w-[400px] ${index === 0 || index === 1 ? 'text-white' : 'text-gray-800'}`}>
                   {project.description}
                 </p>
-                <a
+                <Link
                   href={project.link}
                   className={`py-2 px-6 rounded-lg shadow hover:scale-105 transition-transform ${index === 0 ? 'bg-gradient-to-b from-gray-700 to-gray-900' :
                     index === 1 ? 'bg-gradient-to-b from-indigo-600 to-pink-600' :
@@ -155,7 +156,7 @@ const ProjectsSection = () => {
                     } text-white`}
                 >
                   View Project
-                </a>
+                </Link>
               </div>
             </SwiperSlide>
           ))}
