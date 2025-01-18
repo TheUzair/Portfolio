@@ -78,7 +78,7 @@ const About = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
-          {['React.js', 'Next.js', 'Node.js', 'MySQL', 'JavaScipt', 'Tailwind CSS', 'AWS', 'MongoDB'].map((skill, index) => (
+          {['React.js', 'Next.js', 'Node.js', 'PostgreSQL', 'JavaScipt', 'Tailwind CSS', 'AWS', 'MongoDB'].map((skill, index) => (
             <div
               key={index}
               className={`flex items-center justify-center rounded-md py-4 px-6 shadow-md ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}
