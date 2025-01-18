@@ -32,7 +32,7 @@ const Footer = () => {
               Excited to Bring Ideas to Life?
             </motion.h2>
             <motion.h4
-              className={`relative inline-block bg-clip-text text-transparent cursor-pointer text-3xl font-bold tracking-[0.5px] md:text-5xl xl:text-6xl group ${isDarkMode
+              className={`relative inline-block bg-clip-text text-transparent cursor-pointer text-3xl font-bold tracking-[0.5px] md:text-5xl xl:text-6xl mt-2 group ${isDarkMode
                   ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
                   : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
                 }`}
@@ -42,7 +42,7 @@ const Footer = () => {
             >
               Bring Your Vision
               <span
-                className={`block h-[3px] w-0 transition-all duration-300 ease-in-out group-hover:w-full ${isDarkMode
+                className={`block h-1 w-0 transition-all duration-300 ease-in-out group-hover:w-full ${isDarkMode
                     ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
                     : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
                   }`}
@@ -108,7 +108,7 @@ const Footer = () => {
                   >
                     <Link
                       target="_self"
-                      className={`${isDarkMode ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-black"
+                      className={`${isDarkMode ? "text-gray-300 hover:text-white hover:underline" : "text-gray-600 hover:text-black hover:underline"
                         } transition-colors`}
                       href={`/#${item.toLowerCase()}`}
                     >
@@ -126,7 +126,7 @@ const Footer = () => {
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${isDarkMode ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-black"
+                  className={`${isDarkMode ? "text-gray-300 hover:text-white hover:underline" : "text-gray-600 hover:text-black hover:underline"
                     } transition-colors`}
                   href="https://leetcode.com/u/Mohd_Uzair"
                 >
@@ -142,7 +142,7 @@ const Footer = () => {
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${isDarkMode ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-black"
+                  className={`${isDarkMode ? "text-gray-300 hover:text-white hover:underline" : "text-gray-600 hover:text-black hover:underline"
                     } transition-colors`}
                   href="https://github.com/TheUzair"
                 >
@@ -158,7 +158,7 @@ const Footer = () => {
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${isDarkMode ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-black"
+                  className={`${isDarkMode ? "text-gray-300 hover:text-white hover:underline" : "text-gray-600 hover:text-black hover:underline"
                     } transition-colors`}
                   href="https://linkedin.com/in/mohd-uzair-33b166204"
                 >
@@ -171,7 +171,7 @@ const Footer = () => {
           <div className="text-center mt-12 pb-10 text-lg font-medium">
             <p>
               &copy; {currentYear}{" "}
-              <span className="text-[15px] font-medium italic">
+              <span className="text-lg font-medium italic">
                 &lt;Next
                 <span
                   className={`bg-clip-text text-transparent ${isDarkMode
