@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import { ThemeContext } from "@/context/ThemeContext";
 
 const Footer = () => {
-  const { theme } = useContext(ThemeContext); 
+  const { theme } = useContext(ThemeContext);
   const isDarkMode = theme === "dark";
   const currentYear = new Date().getFullYear();
 
@@ -33,8 +33,8 @@ const Footer = () => {
             </motion.h2>
             <motion.h4
               className={`relative inline-block bg-clip-text text-transparent cursor-pointer text-3xl font-bold tracking-[0.5px] md:text-5xl xl:text-6xl mt-2 group ${isDarkMode
-                  ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
-                  : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
+                ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
+                : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
                 }`}
               initial={{ y: -20 }}
               animate={{ y: 0 }}
@@ -43,14 +43,14 @@ const Footer = () => {
               Bring Your Vision
               <span
                 className={`block h-1 w-0 transition-all duration-300 ease-in-out group-hover:w-full ${isDarkMode
-                    ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
-                    : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
+                  ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
+                  : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
                   }`}
               ></span>
             </motion.h4>
           </div>
 
-          <div className="flex flex-col xl:flex-row xl:justify-between items-start xl:items-center gap-8 xl:gap-0">
+          <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-8 md:gap-0">
             <div className="flex flex-col items-start">
               <h2
                 className={`font-medium italic ${isDarkMode ? "text-white" : "text-black"
@@ -59,8 +59,8 @@ const Footer = () => {
                 &lt;Next
                 <span
                   className={`bg-clip-text text-transparent ${isDarkMode
-                      ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
-                      : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
+                    ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
+                    : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
                     }`}
                 >
                   Mode /&gt;
@@ -96,7 +96,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 sm:gap-8 xl:grid-cols-3 xl:gap-12 text-sm sm:text-base">
+            <div className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-3 md:gap-12 text-sm sm:text-base">
               {["About", "Services", "Experience", "Contact", "Articles", "Projects"].map(
                 (item, index) => (
                   <motion.div
@@ -175,8 +175,8 @@ const Footer = () => {
                 &lt;Next
                 <span
                   className={`bg-clip-text text-transparent ${isDarkMode
-                      ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
-                      : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
+                    ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
+                    : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
                     }`}
                 >
                   Mode
