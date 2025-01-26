@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -12,10 +12,51 @@ import {
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import { ThemeContext } from "@/context/ThemeContext";
+import { usePathname, useRouter } from "next/navigation";
 
 const Header = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const isDarkMode = theme === "dark";
+  const pathname = usePathname();
+  const router = useRouter();
+  
+  useEffect(() => {
+    if (pathname === "/") {
+      router.replace("/#home");
+    }
+  }, [pathname, router]);
+
+  const navItems = [
+    { name: "Home", href: "/#home" },
+    { name: "About", href: "/#about" },
+    { name: "Services", href: "/#services" },
+    { name: "Projects", href: "/projects" },
+    { name: "Articles", href: "/articles" },
+    { name: "Reserve a Spot", href: "/contact" },
+  ];
+
+  const handleScroll = (event, href) => {
+    event.preventDefault();
+    const elementId = href.split("#")[1];
+    const element = document.getElementById(elementId);
+
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      router.push(href); 
+    }
+  };
+
+  const handleDelayedNavigation = (event, href) => {
+    event.preventDefault();
+    document.body.style.transition = "opacity 0.3s";
+    document.body.style.opacity = "0";
+
+    setTimeout(() => {
+      router.push(href);
+      document.body.style.opacity = "1";
+    }, 300);
+  };
 
   return (
     <div
@@ -30,13 +71,13 @@ const Header = () => {
       >
         <Link
           className="text-xs font-medium italic sm:text-base md:text-2xl lg:font-bold"
-          href="/"
+          href="/#home"
         >
           &lt;Next
           <span
             className={`bg-clip-text text-transparent ${isDarkMode
-              ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
-              : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
+              ? "bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"
+              : "bg-gradient-to-r from-blue-400 via-green-500 to-blue-600"
               }`}
           >
             Mode /&gt;
@@ -53,57 +94,44 @@ const Header = () => {
             className={`w-48 ${isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
               }`}
           >
-            <DropdownMenuItem asChild>
-              <Link href="/#about">About</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href="/#services">Services</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href="/projects">Projects</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href="/articles">Articles</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href="/contact">Reserve a Spot</Link>
-            </DropdownMenuItem>
+            {navItems.map((item) => (
+              <DropdownMenuItem asChild key={item.name}>
+                <a
+                  href={item.href}
+                  onClick={(event) =>
+                    item.href.startsWith("/#")
+                      ? handleScroll(event, item.href)
+                      : handleDelayedNavigation(event, item.href)
+                  }
+                  className={
+                    pathname.includes(item.href.split("#")[0]) ? "font-bold text-blue-500" : ""
+                  }
+                >
+                  {item.name}
+                </a>
+              </DropdownMenuItem>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
 
         <div className="hidden gap-6 font-medium lg:flex xl:gap-8 items-center">
-          {["About", "Services", "Projects", "Articles"].map((item) => (
-            <Link
-              key={item}
-              className="font-bold my-5 transition-opacity duration-75 hover:opacity-50"
-              href={
-                item === "Projects" || item === "Articles"
-                  ? `/${item.toLowerCase()}`
-                  : `/#${item.toLowerCase()}`
+          {navItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              onClick={(event) =>
+                item.href.startsWith("/#")
+                  ? handleScroll(event, item.href)
+                  : handleDelayedNavigation(event, item.href)
               }
+              className={`font-bold my-5 transition-opacity duration-75 hover:opacity-50 ${pathname === item.href
+                ? "text-blue-500 underline"
+                : ""
+                }`}
             >
-              {item}
-            </Link>
+              {item.name}
+            </a>
           ))}
-          <Link
-            className="font-bold my-5 flex items-center gap-3 transition-opacity duration-75 hover:opacity-50"
-            href="/contact"
-          >
-            <span>Reserve a Spot</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-arrow-right"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fillRule="evenodd"
-                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-              ></path>
-            </svg>
-          </Link>
 
           <Button
             variant="ghost"
