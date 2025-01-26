@@ -9,9 +9,9 @@ const EduExp = () => {
   const isDarkMode = theme === "dark";
 
   const education = [
-    { school: "GL Bajaj Group of Institutions", level: "Graduate (B.Tech)", years: "11/2020 - 11/2024" },
-    { school: "Vidya Devi Jindal School", level: "Higher Secondary (Grade 12)", years: "04/2019 - 03/2020" },
-    { school: "M D Jain Public School", level: "Secondary (Grade 10)", years: "04/2017 - 03/2018" },
+    { school: "GL Bajaj Group of Institutions", level: "Graduate (B.Tech)", years: "2020 - 2024" },
+    { school: "Vidya Devi Jindal School", level: "Higher Secondary (Grade 12)", years: "2019 - 2020" },
+    { school: "M D Jain Public School", level: "Secondary (Grade 10)", years: "2017 - 2018" },
   ];
 
   const experience = [
@@ -21,7 +21,7 @@ const EduExp = () => {
 
   return (
     <>
-      <section className={`py-16 ${isDarkMode ? 'bg-black text-white' : 'bg-gray-50 text-black'}`}>
+      <section className={`${isDarkMode ? 'bg-black text-white' : 'bg-gray-50 text-black'}`}>
         <div className="container mx-auto px-4 lg:px-20">
           <motion.div
             initial={{ opacity: 0 }}

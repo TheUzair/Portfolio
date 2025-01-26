@@ -1,9 +1,9 @@
 "use client"
 
-import React from 'react'
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
+import React, { useContext } from 'react';
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import {
   Form,
   FormControl,
@@ -11,14 +11,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { motion } from "motion/react";
-import Header from '@/components/Header'
-import FAQ from '@/components/FAQ'
-import Footer from '@/components/Footer'
+import Header from '@/components/Header';
+import FAQ from '@/components/FAQ';
+import Footer from '@/components/Footer';
+import { ThemeContext } from '@/context/ThemeContext';
 
 const formSchema = z.object({
   firstName: z.string().min(2, {
@@ -36,7 +37,7 @@ const formSchema = z.object({
   message: z.string().min(10, {
     message: "Message must be at least 10 characters.",
   }),
-})
+});
 
 const Page = () => {
   const form = useForm({
@@ -48,18 +49,21 @@ const Page = () => {
       budget: "",
       message: "",
     },
-  })
+  });
+
+  const { theme } = useContext(ThemeContext);
+  const isDarkMode = theme === "dark";
 
   function onSubmit(values) {
-    console.log(values)
+    console.log(values);
   }
 
   return (
-    <>
+    <div className={`${isDarkMode ? 'bg-black' : 'bg-white'}`}>
       <Header />
       <section>
         <motion.div
-          className="container mx-auto mt-20 flex flex-col justify-between gap-10 px-5 pt-5 lg:px-20 xl:flex-row"
+          className="container mx-auto mt-16 flex flex-col justify-between gap-10 px-5 pt-5 lg:px-20 xl:flex-row"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -142,7 +146,7 @@ const Page = () => {
                     <FormItem className="w-full">
                       <FormLabel className="font-bold text-md">First Name</FormLabel>
                       <FormControl>
-                        <Input className="h-20 bg-gray-100 pl-8" placeholder="First Name" {...field} />
+                        <Input className={`h-20 pl-8 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black'}`} placeholder="First Name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -155,7 +159,7 @@ const Page = () => {
                     <FormItem className="w-full">
                       <FormLabel className="font-bold text-md">Last Name</FormLabel>
                       <FormControl>
-                        <Input className="h-20 bg-gray-100 pl-8" placeholder="Last Name" {...field} />
+                        <Input className={`h-20 pl-8 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black'}`} placeholder="Last Name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -169,7 +173,7 @@ const Page = () => {
                   <FormItem>
                     <FormLabel className="font-bold text-md">Email</FormLabel>
                     <FormControl>
-                      <Input className="h-20 bg-gray-100 pl-8" placeholder="Enter your email address" {...field} />
+                      <Input className={`h-20 pl-8 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black'}`} placeholder="Enter your email address" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -183,7 +187,7 @@ const Page = () => {
                     <FormLabel className="font-bold text-md">Your Budget</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger className="h-20 bg-gray-100 flex items-center">
+                        <SelectTrigger className={`h-20 flex items-center ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black'}`}>
                           <div className="flex items-center flex-1">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -217,11 +221,11 @@ const Page = () => {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="font-bold text-md">Tell me a bit more what you&apos;re looking for?</FormLabel>
+                    <FormLabel className="font-bold text-md">How can I help bring your vision to life?</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Enter your message here..."
-                        className="resize-none h-80 bg-gray-100"
+                        className={`resize-none h-80 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black'}`}
                         {...field}
                       />
                     </FormControl>
@@ -231,12 +235,14 @@ const Page = () => {
               />
 
               <motion.div
-                className="mt-4 relative h-[60px] bg-gradient-to-r from-orange-400 via-red-500 to-purple-600 w-[200px]"
-                whileHover={{ scale: 1.05 }}
+                className={`relative h-[60px] w-[200px] ${isDarkMode
+                  ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
+                  : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
+                  }`}
               >
                 <button
                   aria-label="Send message"
-                  className="absolute h-[62px] bg-black text-lg font-medium text-white w-[202px] transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-0 hover:translate-x-3 hover:translate-y-3"
+                  className="absolute h-[62px] bg-black text-lg font-medium text-white w-[202px] transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-0 hover:translate-x-3 hover:translate-y-3 dark:bg-white dark:text-black dark:font-medium"
                   style={{ right: '8px', bottom: '8px' }}
                 >
                   Submit Now!
@@ -250,8 +256,8 @@ const Page = () => {
         <FAQ />
       </div>
       <Footer />
-    </>
-  )
+    </div>
+  );
 }
 
-export default Page
+export default Page;

@@ -11,17 +11,16 @@ const About = () => {
 
   return (
     <div
-      className={`container mx-auto px-5 py-20 lg:px-20 ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'}`}
+      className={`container mx-auto px-5 py-16 lg:px-20 ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'}`}
     >
       <section id="about">
         <motion.div
-          className="mb-20 flex flex-col items-start justify-between gap-8 lg:flex-row"
+          className="mb-16 flex flex-col items-start justify-between gap-8 lg:flex-row"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Intro Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -41,7 +40,6 @@ const About = () => {
             </h2>
           </motion.div>
 
-          {/* Description Section */}
           <motion.p
             className={`text-xl leading-[1.8] ${isDarkMode ? 'text-gray-300' : 'text-gray-600'} md:text-2xl lg:max-w-[50%]`}
             initial={{ opacity: 0, x: 50 }}
@@ -70,7 +68,6 @@ const About = () => {
           />
         </motion.div> */}
 
-        {/* Skills Section */}
         <motion.div
           className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4"
           initial={{ opacity: 0 }}
