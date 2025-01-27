@@ -185,8 +185,40 @@ const Articles = () => {
             <p>Stay tuned for this exciting article coming soon! ✍️</p>
           </motion.div>
         )}
-      </main >
 
+        <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+          <Link href="/newsletter" passHref>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Button
+                as="a"
+                className="bg-blue-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                aria-label="Subscribe to my newsletter"
+              >
+                Subscribe to My Newsletter 📧
+              </Button>
+            </motion.div>
+          </Link>
+          <Link href="https://linkedin.com/in/mohd-uzair-33b166204" passHref>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Button
+                as="a"
+                className="bg-blue-700 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-800 focus:ring-2 focus:ring-blue-700 transition-all duration-200"
+                aria-label="Connect with me on LinkedIn"
+              >
+                Connect with Me on LinkedIn 🔗
+              </Button>
+            </motion.div>
+          </Link>
+        </div>
+      </main >
       <FAQ />
       <Footer />
     </>
