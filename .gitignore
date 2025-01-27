@@ -40,6 +40,5 @@ yarn-error.log*
 next-env.d.ts
 
 # specific pages and components
-/app/articles/
 /components/Testimonials.js
 /components/Articles.js
