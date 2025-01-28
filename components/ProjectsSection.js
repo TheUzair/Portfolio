@@ -55,7 +55,7 @@ const ProjectsSection = () => {
 
   return (
     <section id="projects" className="min-h-screen flex flex-col justify-center">
-      <div className="flex flex-col items-center justify-between gap-8 lg:flex-row lg:gap-0">
+      <div className="flex items-center justify-between gap-8 lg:flex-row lg:gap-0">
         <motion.div
           initial={{ opacity: 0, x: -50, y: 50 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
@@ -63,8 +63,8 @@ const ProjectsSection = () => {
         >
           <h6
             className={`bg-clip-text text-transparent mb-4 text-xl font-bold ${isDarkMode
-                ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
-                : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
+              ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
+              : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
               }`}
           >
             BOUNDLESS CREATIONS
@@ -74,7 +74,8 @@ const ProjectsSection = () => {
             Building Beyond Boundaries
           </h2>
         </motion.div>
-        <Link href="/projects">
+
+        <Link href="/projects" className="hidden md:block">
           <motion.div
             className={`relative h-[60px] w-[200px] ${isDarkMode
               ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
@@ -162,6 +163,25 @@ const ProjectsSection = () => {
           ))}
         </Swiper>
       </div>
+
+      <Link href="/projects" className="block md:hidden mt-10 mx-auto">
+        <motion.div
+          className={`relative h-[60px] w-[200px] ${isDarkMode
+            ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
+            : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
+            }`}
+          initial={{ opacity: 0, y: 50, x: 50 }}
+          animate={{ opacity: 1, y: 0, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <button
+            className="absolute h-[62px] bg-black text-lg font-medium text-white w-[202px] transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-0 hover:translate-x-3 hover:translate-y-3 dark:bg-white dark:text-black dark:font-medium"
+            style={{ right: '8px', bottom: '8px' }}
+          >
+            Discover More Boundless Creations
+          </button>
+        </motion.div>
+      </Link>
     </section>
   )
 };
