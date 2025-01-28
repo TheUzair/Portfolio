@@ -4,11 +4,36 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { ThemeContext } from "@/context/ThemeContext";
+import { useRouter } from "next/navigation";
 
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
   const isDarkMode = theme === "dark";
   const currentYear = new Date().getFullYear();
+  const router = useRouter();
+
+  const handleScroll = (event, href) => {
+    event.preventDefault();
+    const elementId = href.split("#")[1];
+    const element = document.getElementById(elementId);
+
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      router.push(href); 
+    }
+  };
+
+  const handleDelayedNavigation = (event, href) => {
+    event.preventDefault();
+    document.body.style.transition = "opacity 0.3s";
+    document.body.style.opacity = "0";
+
+    setTimeout(() => {
+      router.push(href);
+      document.body.style.opacity = "1";
+    }, 300);
+  };
 
   return (
     <footer
@@ -97,7 +122,7 @@ const Footer = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-3 md:gap-12 text-sm sm:text-base">
-              {["About", "Services", "Experience", "Contact", "Articles", "Projects"].map(
+              {["about", "services", "experience", "contact", "articles", "projects"].map(
                 (item, index) => (
                   <motion.div
                     key={item}
@@ -110,9 +135,14 @@ const Footer = () => {
                       target="_self"
                       className={`${isDarkMode ? "text-gray-300 hover:text-white hover:underline" : "text-gray-600 hover:text-black hover:underline"
                         } transition-colors`}
-                      href={`/#${item.toLowerCase()}`}
+                      href={`/${item === "contact" || item === "articles" ? item : `#${item}`}`}
+                      onClick={(event) =>
+                        item === "contact" || item === "articles"
+                          ? handleDelayedNavigation(event, `/${item}`)
+                          : handleScroll(event, `#${item}`)
+                      }
                     >
-                      {item}
+                      {item.charAt(0).toUpperCase() + item.slice(1)}
                     </Link>
                   </motion.div>
                 )
