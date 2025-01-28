@@ -21,7 +21,7 @@ const EduExp = () => {
 
   return (
     <>
-      <section className={`${isDarkMode ? 'bg-black text-white' : 'bg-gray-50 text-black'}`}>
+      <section id="experience" className={`${isDarkMode ? 'bg-black text-white' : 'bg-gray-50 text-black'}`}>
         <div className="container mx-auto px-4 lg:px-20">
           <motion.div
             initial={{ opacity: 0 }}

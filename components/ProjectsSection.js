@@ -54,7 +54,7 @@ const ProjectsSection = () => {
   const isDarkMode = theme === "dark";
 
   return (
-    <section className="min-h-screen flex flex-col justify-center">
+    <section id="projects" className="min-h-screen flex flex-col justify-center">
       <div className="flex flex-col items-center justify-between gap-8 lg:flex-row lg:gap-0">
         <motion.div
           initial={{ opacity: 0, x: -50, y: 50 }}
