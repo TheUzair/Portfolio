@@ -63,12 +63,12 @@ const Page = () => {
       <Header />
       <section>
         <motion.div
-          className="container mx-auto mt-16 flex flex-col justify-between gap-10 px-5 pt-5 lg:px-20 xl:flex-row"
+          className="container mx-auto mt-16 flex flex-col md:flex-row justify-between gap-10 px-5 pt-5 lg:px-20"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="xl:w-2/5">
+          <div className="w-full md:w-2/5">
             <motion.h2
               className="text-4xl font-bold md:text-6xl"
               initial={{ opacity: 0 }}
@@ -235,7 +235,7 @@ const Page = () => {
               />
 
               <motion.div
-                className={`relative h-[60px] w-[200px] ${isDarkMode
+                className={`relative h-[60px] w-[200px] mx-auto md:mx-0 ${isDarkMode
                   ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
                   : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
                   }`}
