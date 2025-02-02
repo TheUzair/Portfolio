@@ -11,6 +11,12 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { ThemeContext } from "@/context/ThemeContext";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -19,19 +25,30 @@ const Header = () => {
   const isDarkMode = theme === "dark";
   const pathname = usePathname();
   const router = useRouter();
-  const [activeSection, setActiveSection] = useState("#home");
+  const [activeSection, setActiveSection] = useState("/#home");
 
   useEffect(() => {
     if (pathname === "/") {
       router.replace("/#home");
+      setActiveSection("/#home");
     }
   }, [pathname, router]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setActiveSection(window.location.hash || "#home");
-    }
-  }, []);
+    const updateActiveSection = () => {
+      if (typeof window !== "undefined") {
+        const hash = window.location.hash || (pathname === "/" ? "#home" : pathname);
+        setActiveSection(hash.startsWith("#") ? `/${hash}` : hash);
+      }
+    };
+
+    window.addEventListener("hashchange", updateActiveSection);
+    updateActiveSection();
+
+    return () => {
+      window.removeEventListener("hashchange", updateActiveSection);
+    };
+  }, [pathname]);
 
   const navItems = [
     { name: "Home", href: "/#home" },
@@ -84,8 +101,8 @@ const Header = () => {
           &lt;Next
           <span
             className={`bg-clip-text text-transparent ${isDarkMode
-                ? "bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"
-                : "bg-gradient-to-r from-blue-400 via-green-500 to-blue-600"
+              ? "bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"
+              : "bg-gradient-to-r from-blue-400 via-green-500 to-blue-600"
               }`}
           >
             Mode /&gt;
@@ -125,7 +142,7 @@ const Header = () => {
                         ? handleScroll(event, item.href)
                         : handleDelayedNavigation(event, item.href)
                     }
-                    className={`block w-full px-4 py-2 text-left rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 ${activeSection === item.href ? "text-blue-500 underline" : ""
+                    className={`block w-full px-4 py-2 text-left rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 ${activeSection === item.href ? "text-blue-600 underline" : ""
                       }`}
                   >
                     {item.name}
@@ -146,7 +163,7 @@ const Header = () => {
                   ? handleScroll(event, item.href)
                   : handleDelayedNavigation(event, item.href)
               }
-              className={`font-bold my-5 transition-opacity duration-75 hover:opacity-50 ${activeSection === item.href ? "text-blue-500 underline" : ""
+              className={`font-bold my-5 transition-opacity duration-75 hover:opacity-50 ${activeSection === item.href ? "text-blue-600 underline" : ""
                 }`}
             >
               {item.name}
@@ -158,11 +175,22 @@ const Header = () => {
             onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
           >
-            {isDarkMode ? (
-              <Sun className="h-6 w-6 text-yellow-500" />
-            ) : (
-              <Moon className="h-6 w-6 text-gray-700" />
-            )}
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span className="flex items-center justify-center">
+                    {isDarkMode ? (
+                      <Sun className="h-6 w-6 text-yellow-500" />
+                    ) : (
+                      <Moon className="h-6 w-6 text-gray-700" />
+                    )}
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{isDarkMode ? "Brighten Up" : "Embrace the Dark"}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </Button>
         </div>
       </motion.nav>
