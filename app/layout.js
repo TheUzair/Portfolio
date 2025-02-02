@@ -1,18 +1,18 @@
-import localFont from "next/font/local";
+import { Bodoni_Moda_SC } from "next/font/google"
+import { Inter } from "next/font/google"
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/components/ui/toaster";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const bodoniFont = Bodoni_Moda_SC({
+  subsets: ["latin"],
+  weight: "400",
+})
+
+const interFont = Inter({
+  subsets: ["latin"],
+  weight: "400",
+})
 
 export const metadata = {
   metadataBase: new URL('https://mohd-uzair.vercel.app'),
@@ -44,12 +44,6 @@ export const metadata = {
     index: true,
     follow: true,
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: 'no',
-  },
   alternates: {
     canonical: "https://mohd-uzair.vercel.app/",
     types: {
@@ -58,17 +52,24 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: 'no',
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-    <body
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-    >
-     <ThemeProvider>
-        {children}
-        <Toaster />
-      </ThemeProvider>
-    </body>
-  </html>
+      <body
+        className={`${bodoniFont.className} antialiased`}
+      >
+        <ThemeProvider>
+          {children}
+          <Toaster />
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
