@@ -2,8 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Bodoni+Moda+SC:wght@400&display=swap');
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif; 
+}
+
+@media (min-width: 768px) {
+  body {
+    font-family: 'Bodoni Moda SC', serif;
+  }
 }
 
 @layer base {

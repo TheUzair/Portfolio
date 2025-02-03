@@ -1,18 +1,6 @@
-import { Bodoni_Moda_SC } from "next/font/google"
-import { Inter } from "next/font/google"
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { Toaster } from "@/components/ui/toaster";
-
-const bodoniFont = Bodoni_Moda_SC({
-  subsets: ["latin"],
-  weight: "400",
-})
-
-const interFont = Inter({
-  subsets: ["latin"],
-  weight: "400",
-})
 
 export const metadata = {
   metadataBase: new URL('https://mohd-uzair.vercel.app'),
@@ -62,9 +50,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased ${interFont.className} md:${bodoniFont.className}`}
-      >
+      <body className="antialiased">
         <ThemeProvider>
           {children}
           <Toaster />
