@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${bodoniFont.className} antialiased`}
+        className={`antialiased ${interFont.className} md:${bodoniFont.className}`}
       >
         <ThemeProvider>
           {children}
