@@ -13,6 +13,10 @@ body {
   }
 }
 
+/* * {
+  outline: 1px solid red Temporarily border for debugging; 
+} */
+
 @layer base {
   :root {
     --background: 0 0% 100%;

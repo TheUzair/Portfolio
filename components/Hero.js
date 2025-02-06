@@ -20,7 +20,7 @@ const Hero = () => {
 
   return (
     <div className={`container mx-auto px-5 pt-5 lg:px-20 min-h-screen flex items-center ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
-      <section className="flex flex-col-reverse xl:flex-row items-center gap-16 w-full">
+      <section className="flex flex-col-reverse md:flex-row items-center gap-16 w-full">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}

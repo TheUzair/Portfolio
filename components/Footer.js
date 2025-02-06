@@ -20,7 +20,7 @@ const Footer = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
-      router.push(href); 
+      router.push(href);
     }
   };
 
@@ -116,12 +116,12 @@ const Footer = () => {
                   className={`text-lg font-bold ${isDarkMode ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-black"
                     } transition-colors`}
                 >
-                  mohujer90@gmail.com
+                  MOHUJER90@GMAIL.COM
                 </Link>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-3 md:gap-12 text-sm sm:text-base">
+            <div className="grid grid-cols-3 gap-6 sm:grid-cols-2 sm:gap-8 md:grid-cols-3 md:gap-12 text-sm sm:text-base">
               {["about", "services", "experience", "contact", "articles", "projects"].map(
                 (item, index) => (
                   <motion.div
@@ -133,11 +133,16 @@ const Footer = () => {
                   >
                     <Link
                       target="_self"
-                      className={`${isDarkMode ? "text-gray-300 hover:text-white hover:underline" : "text-gray-600 hover:text-black hover:underline"
+                      className={`${isDarkMode
+                        ? "text-gray-300 hover:text-white hover:underline"
+                        : "text-gray-600 hover:text-black hover:underline"
                         } transition-colors`}
-                      href={`/${item === "contact" || item === "articles" ? item : `#${item}`}`}
+                      href={`/${item === "contact" || item === "articles" || item === "projects"
+                        ? item
+                        : `#${item}`
+                        }`}
                       onClick={(event) =>
-                        item === "contact" || item === "articles"
+                        item === "contact" || item === "articles" || item === "projects"
                           ? handleDelayedNavigation(event, `/${item}`)
                           : handleScroll(event, `#${item}`)
                       }
@@ -156,7 +161,9 @@ const Footer = () => {
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${isDarkMode ? "text-gray-300 hover:text-white hover:underline" : "text-gray-600 hover:text-black hover:underline"
+                  className={`${isDarkMode
+                    ? "text-gray-300 hover:text-white hover:underline"
+                    : "text-gray-600 hover:text-black hover:underline"
                     } transition-colors`}
                   href="https://leetcode.com/u/Mohd_Uzair"
                 >
@@ -172,7 +179,9 @@ const Footer = () => {
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${isDarkMode ? "text-gray-300 hover:text-white hover:underline" : "text-gray-600 hover:text-black hover:underline"
+                  className={`${isDarkMode
+                    ? "text-gray-300 hover:text-white hover:underline"
+                    : "text-gray-600 hover:text-black hover:underline"
                     } transition-colors`}
                   href="https://github.com/TheUzair"
                 >
@@ -188,7 +197,9 @@ const Footer = () => {
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${isDarkMode ? "text-gray-300 hover:text-white hover:underline" : "text-gray-600 hover:text-black hover:underline"
+                  className={`${isDarkMode
+                    ? "text-gray-300 hover:text-white hover:underline"
+                    : "text-gray-600 hover:text-black hover:underline"
                     } transition-colors`}
                   href="https://linkedin.com/in/mohd-uzair-33b166204"
                 >

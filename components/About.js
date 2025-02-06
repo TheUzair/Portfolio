@@ -47,7 +47,7 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            I’m a full-stack Software Engineer skilled in <span className={`${isDarkMode ? 'text-blue-400' : 'text-black'} font-medium`}>React.js</span>, <span className={`${isDarkMode ? 'text-blue-400' : 'text-black'} font-medium`}>Next.js</span>, <span className={`${isDarkMode ? 'text-blue-400' : 'text-black'} font-medium`}>Node.js</span>, and <span className={`${isDarkMode ? 'text-blue-400' : 'text-black'} font-medium`}>MySQL</span>, passionate about creating scalable, secure applications that enhance user experiences and drive innovation.
+            I’m a full-stack Software Engineer skilled in <span className={`${isDarkMode ? 'text-blue-400' : 'text-black'} font-medium`}>Next.js</span>, <span className={`${isDarkMode ? 'text-blue-400' : 'text-black'} font-medium`}>React.js</span>, <span className={`${isDarkMode ? 'text-blue-400' : 'text-black'} font-medium`}>Node.js</span>, and <span className={`${isDarkMode ? 'text-blue-400' : 'text-black'} font-medium`}>PostgreSQL</span>, passionate about creating scalable, secure applications that enhance user experiences and drive innovation.
           </motion.p>
         </motion.div>
 
@@ -75,7 +75,7 @@ const About = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
-          {['React.js', 'Next.js', 'Node.js', 'PostgreSQL', 'JavaScipt', 'Tailwind CSS', 'AWS', 'MongoDB'].map((skill, index) => (
+          {['Next.js', 'React.js', 'Node.js', 'JavaScipt', 'MongoDB', 'PostgreSQL', 'AWS', 'GCP'].map((skill, index) => (
             <div
               key={index}
               className={`flex items-center justify-center rounded-md py-4 px-6 shadow-md ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}
