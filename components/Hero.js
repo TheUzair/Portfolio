@@ -100,7 +100,7 @@ const Hero = () => {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority
               className="rounded-full object-cover"
-              src="/testing.jpg"
+              src="/user.jpg?v=3"
             />
           </div>
         </motion.div>
