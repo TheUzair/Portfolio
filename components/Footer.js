@@ -37,10 +37,11 @@ const Footer = () => {
 
   return (
     <footer
-      className={`p-12 ${isDarkMode ? "bg-black text-white" : "bg-white text-black"
-        }`}
+      className={`p-12 ${
+        isDarkMode ? "bg-black text-white" : "bg-white text-black"
+      }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-5">
         <motion.section
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -48,8 +49,9 @@ const Footer = () => {
         >
           <div className="mb-8" style={{ opacity: 1, transform: "none" }}>
             <motion.h2
-              className={`text-4xl font-bold tracking-[0.5px] ${isDarkMode ? "text-white" : "text-black"
-                } md:text-5xl xl:text-6xl`}
+              className={`text-4xl font-bold tracking-[0.5px] ${
+                isDarkMode ? "text-white" : "text-black"
+              } md:text-5xl xl:text-6xl`}
               initial={{ y: -20 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.5 }}
@@ -57,20 +59,22 @@ const Footer = () => {
               Excited to Bring Ideas to Life?
             </motion.h2>
             <motion.h4
-              className={`relative inline-block bg-clip-text text-transparent cursor-pointer text-3xl font-bold tracking-[0.5px] md:text-5xl xl:text-6xl mt-2 group ${isDarkMode
-                ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
-                : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
-                }`}
+              className={`relative inline-block bg-clip-text text-transparent cursor-pointer text-3xl font-bold tracking-[0.5px] md:text-5xl xl:text-6xl mt-2 group ${
+                isDarkMode
+                  ? "bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"
+                  : "bg-gradient-to-r from-blue-400 via-green-500 to-blue-600"
+              }`}
               initial={{ y: -20 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               Bring Your Vision
               <span
-                className={`block h-1 w-0 transition-all duration-300 ease-in-out group-hover:w-full ${isDarkMode
-                  ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
-                  : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
-                  }`}
+                className={`block h-1 w-0 transition-all duration-300 ease-in-out group-hover:w-full ${
+                  isDarkMode
+                    ? "bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"
+                    : "bg-gradient-to-r from-blue-400 via-green-500 to-blue-600"
+                }`}
               ></span>
             </motion.h4>
           </div>
@@ -78,22 +82,25 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-8 md:gap-0">
             <div className="flex flex-col items-start">
               <h2
-                className={`font-medium italic ${isDarkMode ? "text-white" : "text-black"
-                  } text-lg sm:text-xl md:text-2xl lg:text-3xl lg:font-bold`}
+                className={`font-medium italic ${
+                  isDarkMode ? "text-white" : "text-black"
+                } text-lg sm:text-xl md:text-2xl lg:text-3xl lg:font-bold`}
               >
                 &lt;Next
                 <span
-                  className={`bg-clip-text text-transparent ${isDarkMode
-                    ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
-                    : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
-                    }`}
+                  className={`bg-clip-text text-transparent ${
+                    isDarkMode
+                      ? "bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"
+                      : "bg-gradient-to-r from-blue-400 via-green-500 to-blue-600"
+                  }`}
                 >
                   Mode /&gt;
                 </span>
               </h2>
               <p
-                className={`py-2 ${isDarkMode ? "text-gray-300" : "text-gray-600"
-                  } text-base lg:text-lg`}
+                className={`py-2 ${
+                  isDarkMode ? "text-gray-300" : "text-gray-600"
+                } text-base lg:text-lg`}
               >
                 Delhi - NCR, India
               </p>
@@ -113,8 +120,11 @@ const Footer = () => {
                   href="mailto:mohujer90@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-lg font-bold ${isDarkMode ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-black"
-                    } transition-colors`}
+                  className={`text-lg font-bold ${
+                    isDarkMode
+                      ? "text-gray-300 hover:text-white"
+                      : "text-gray-600 hover:text-black"
+                  } transition-colors`}
                 >
                   MOHUJER90@GMAIL.COM
                 </Link>
@@ -122,36 +132,47 @@ const Footer = () => {
             </div>
 
             <div className="grid grid-cols-3 gap-6 sm:grid-cols-2 sm:gap-8 md:grid-cols-3 md:gap-12 text-sm sm:text-base">
-              {["about", "services", "experience", "contact", "articles", "projects"].map(
-                (item, index) => (
-                  <motion.div
-                    key={item}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <Link
-                      target="_self"
-                      className={`${isDarkMode
+              {[
+                "about",
+                "services",
+                "experience",
+                "contact",
+                "articles",
+                "projects",
+              ].map((item, index) => (
+                <motion.div
+                  key={item}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <Link
+                    target="_self"
+                    className={`${
+                      isDarkMode
                         ? "text-gray-300 hover:text-white hover:underline"
                         : "text-gray-600 hover:text-black hover:underline"
-                        } transition-colors`}
-                      href={`/${item === "contact" || item === "articles" || item === "projects"
+                    } transition-colors`}
+                    href={`/${
+                      item === "contact" ||
+                      item === "articles" ||
+                      item === "projects"
                         ? item
                         : `#${item}`
-                        }`}
-                      onClick={(event) =>
-                        item === "contact" || item === "articles" || item === "projects"
-                          ? handleDelayedNavigation(event, `/${item}`)
-                          : handleScroll(event, `#${item}`)
-                      }
-                    >
-                      {item.charAt(0).toUpperCase() + item.slice(1)}
-                    </Link>
-                  </motion.div>
-                )
-              )}
+                    }`}
+                    onClick={(event) =>
+                      item === "contact" ||
+                      item === "articles" ||
+                      item === "projects"
+                        ? handleDelayedNavigation(event, `/${item}`)
+                        : handleScroll(event, `#${item}`)
+                    }
+                  >
+                    {item.charAt(0).toUpperCase() + item.slice(1)}
+                  </Link>
+                </motion.div>
+              ))}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -161,10 +182,11 @@ const Footer = () => {
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${isDarkMode
-                    ? "text-gray-300 hover:text-white hover:underline"
-                    : "text-gray-600 hover:text-black hover:underline"
-                    } transition-colors`}
+                  className={`${
+                    isDarkMode
+                      ? "text-gray-300 hover:text-white hover:underline"
+                      : "text-gray-600 hover:text-black hover:underline"
+                  } transition-colors`}
                   href="https://leetcode.com/u/Mohd_Uzair"
                 >
                   Leetcode
@@ -179,10 +201,11 @@ const Footer = () => {
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${isDarkMode
-                    ? "text-gray-300 hover:text-white hover:underline"
-                    : "text-gray-600 hover:text-black hover:underline"
-                    } transition-colors`}
+                  className={`${
+                    isDarkMode
+                      ? "text-gray-300 hover:text-white hover:underline"
+                      : "text-gray-600 hover:text-black hover:underline"
+                  } transition-colors`}
                   href="https://github.com/TheUzair"
                 >
                   Github
@@ -197,10 +220,11 @@ const Footer = () => {
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${isDarkMode
-                    ? "text-gray-300 hover:text-white hover:underline"
-                    : "text-gray-600 hover:text-black hover:underline"
-                    } transition-colors`}
+                  className={`${
+                    isDarkMode
+                      ? "text-gray-300 hover:text-white hover:underline"
+                      : "text-gray-600 hover:text-black hover:underline"
+                  } transition-colors`}
                   href="https://linkedin.com/in/mohd-uzair-33b166204"
                 >
                   Linkedin
@@ -215,18 +239,23 @@ const Footer = () => {
               <span className="text-lg font-medium italic">
                 &lt;Next
                 <span
-                  className={`bg-clip-text text-transparent ${isDarkMode
-                    ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500'
-                    : 'bg-gradient-to-r from-blue-400 via-green-500 to-blue-600'
-                    }`}
+                  className={`bg-clip-text text-transparent ${
+                    isDarkMode
+                      ? "bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"
+                      : "bg-gradient-to-r from-blue-400 via-green-500 to-blue-600"
+                  }`}
                 >
                   Mode
                 </span>{" "}
                 /&gt;
-              </span>
-              {" "}All rights reserved.
+              </span>{" "}
+              All rights reserved.
             </p>
-            <p className={`mt-2 text-sm ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
+            <p
+              className={`mt-2 text-sm ${
+                isDarkMode ? "text-gray-400" : "text-gray-500"
+              }`}
+            >
               Built using NextJS, Shadcn/UI, and Framer Motion.
             </p>
           </div>
