@@ -63,7 +63,7 @@ const Hero = () => {
               systems.
             </p>
 
-            <div className="flex flex-col items-start gap-12 w-full w-full">
+            <div className="flex flex-col items-start gap-12 w-full">
               {/* Contact Button */}
               <div className="w-full">
                 <a href="/contact">

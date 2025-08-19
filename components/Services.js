@@ -214,14 +214,14 @@ const Services = () => {
                         "Collaborative design tool for UI/UX wireframes, prototypes, and high-fidelity designs.",
                     },
                     {
-                      app: "Sketch",
+                      app: "GitHub",
                       description:
-                        "Vector-based design tool for creating clean, responsive layouts.",
+                        "Version control and collaboration platform for managing codebases and teamwork.",
                     },
                     {
-                      app: "Webflow",
+                      app: "Postman",
                       description:
-                        "Web design and development platform for building responsive websites visually.",
+                        "API development and testing tool to streamline backend and frontend integration.",
                     },
                     {
                       app: "Canva",
