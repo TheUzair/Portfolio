@@ -2,12 +2,51 @@
 const nextConfig = {
   async headers() {
     return [
+      // Image caching
       {
-        source: '/:all*(jpg|jpeg|png|svg|gif)',
+        source: "/:all*(jpg|jpeg|png|svg|gif|webp)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'no-store, max-age=0, must-revalidate',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // Security headers on all routes
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+          {
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+          {
+            key: "Content-Security-Policy",
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' https://fonts.gstatic.com",
+              "img-src 'self' data: blob: https://ui-avatars.com https://mohd-uzair.vercel.app",
+              "connect-src 'self' https://api.resend.com",
+              "frame-ancestors 'none'",
+            ].join("; "),
           },
         ],
       },
