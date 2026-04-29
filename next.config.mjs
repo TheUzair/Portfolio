@@ -44,7 +44,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob: https://ui-avatars.com https://mohd-uzair.vercel.app",
-              "connect-src 'self' https://api.resend.com",
+              "connect-src 'self'",
               "frame-ancestors 'none'",
             ].join("; "),
           },

@@ -214,7 +214,7 @@ const Page = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="font-bold text-md">Your Budget</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value ?? ''}>
                       <FormControl>
                         <SelectTrigger className={`h-20 flex items-center ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-black'}`}>
                           <div className="flex items-center flex-1">
@@ -273,7 +273,7 @@ const Page = () => {
                   type="submit"
                   disabled={isSubmitting}
                   aria-label="Send message"
-                  className="absolute h-[62px] bg-black text-lg font-medium text-white w-[202px] transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-0 hover:translate-x-3 hover:translate-y-3 dark:bg-white dark:text-black dark:font-medium disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+                  className="absolute h-[64px] bg-black text-lg font-medium text-white w-[204px] transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-0 hover:translate-x-3 hover:translate-y-3 active:translate-x-3 active:translate-y-3 dark:bg-white dark:text-black dark:font-medium disabled:opacity-60 disabled:cursor-not-allowed"
                   style={{ right: '8px', bottom: '8px' }}
                 >
                   {isSubmitting ? (
