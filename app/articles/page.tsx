@@ -4,18 +4,15 @@ import React, { useState } from "react";
 import Header from "@/components/Header";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
-import { useTheme } from "@/context/ThemeContext";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { Search, Sparkles, Linkedin, Mail } from "lucide-react";
 
 const Articles = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
 
   const upcomingTopics = [
     "React Best Practices",
@@ -45,126 +42,102 @@ const Articles = () => {
   );
 
   return (
-    <>
+    <div className="surface-page relative overflow-hidden min-h-screen">
+      <div className="blob blob-cyan w-[420px] h-[420px] -top-10 left-1/3 opacity-20" />
+      <div className="blob blob-amber w-[360px] h-[360px] top-1/2 -right-20 opacity-15" style={{ animationDelay: "5s" }} />
+
       <Header />
-      <main
-        className={`container mx-auto px-4 py-8 text-center min-h-screen ${isDarkMode ? "bg-black text-white" : "bg-white text-gray-900"
-          }`}
-      >
-        <div className="text-center mb-8">
-          <motion.h1
-            className={`text-5xl lg:text-4xl font-bold mb-6 tracking-wide ${isDarkMode ? "text-white" : "text-black"
-              }`}
+      <main className="container mx-auto px-4 py-12 text-center relative">
+        <div className="text-center mb-12">
+          <motion.span
+            className="eyebrow"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Articles 📚
+            Library
+          </motion.span>
+          <motion.h1
+            className="text-4xl lg:text-6xl font-bold mt-3 mb-6 tracking-tight"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            Articles <span className="text-gradient">📚</span>
           </motion.h1>
           <motion.p
-            className={`text-lg mb-6 ${isDarkMode ? "text-gray-300" : "text-gray-800"
-              }`}
+            className="text-lg text-muted-foreground max-w-2xl mx-auto"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             Discover insights, tips, and tricks to enhance your development journey.
-            Stay tuned for fresh articles! 🚀✨
+            Stay tuned for fresh articles! 🚀
           </motion.p>
         </div>
 
-        <Card
-          className={`p-6 rounded-lg shadow-md mb-10
-          ${isDarkMode
-              ? "bg-gray-800 text-white"
-              : "bg-gradient-to-br from-blue-50 to-white"
-            }`}
+        <motion.div
+          className="glass rounded-2xl p-8 mb-12 max-w-3xl mx-auto text-left"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <CardHeader>
-            <motion.h2
-              className="text-3xl font-semibold mb-4"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              Coming Soon! 🛠️
-            </motion.h2>
-          </CardHeader>
-          <CardContent>
-            <motion.p
-              className="mb-3"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-            >
-              I&apos;m working hard to bring you valuable content. New articles
-              will be live shortly.
-            </motion.p>
-            <motion.p
-              className="text-sm"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5 }}
-            >
-              Meanwhile, connect with me on social media or subscribe to my
-              newsletter for updates! 📱✨
-            </motion.p>
-          </CardContent>
-        </Card>
+          <div className="flex items-center gap-3 mb-3">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-brand-amber-500/15 text-brand-amber-500">
+              <Sparkles className="h-5 w-5" />
+            </span>
+            <h2 className="text-2xl font-bold">Coming Soon</h2>
+          </div>
+          <p className="mb-2 text-muted-foreground">
+            I&apos;m working hard to bring you valuable content. New articles will be live shortly.
+          </p>
+          <p className="text-sm text-muted-foreground">
+            Meanwhile, connect with me on social media or subscribe to my newsletter for updates!
+          </p>
+        </motion.div>
 
         <div className="max-w-lg mx-auto mb-10">
-          <motion.h3
-            className={`text-2xl font-semibold mb-4 ${isDarkMode ? "text-white" : "text-black"
-              }`}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Upcoming Topics
-          </motion.h3>
-          <Input
-            type="text"
-            placeholder="Search topics..."
-            className={`w-full px-4 py-2 rounded-full border shadow-sm focus:outline-none focus:ring-2 transition duration-200 ${isDarkMode
-              ? "bg-gray-700 border-gray-600 text-white focus:ring-blue-400"
-              : "border-gray-300 focus:ring-blue-500"
-              }`}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            aria-label="Search topics"
-          />
+          <h3 className="text-2xl font-semibold mb-4">
+            Upcoming <span className="text-gradient">Topics</span>
+          </h3>
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" aria-hidden="true" />
+            <Input
+              type="text"
+              placeholder="Search topics..."
+              className="w-full pl-11 pr-4 py-2 rounded-full bg-background/60 border-border/60 backdrop-blur focus-visible:ring-brand-cyan-500/40 focus-visible:border-brand-cyan-500"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              aria-label="Search topics"
+            />
+          </div>
         </div>
 
         {filteredTopics.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-2xl mx-auto">
             {filteredTopics.map((topic, index) => (
               <motion.div
                 key={index}
-                className={`p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 ease-in-out ${selectedTopic === topic
-                  ? isDarkMode
-                    ? "bg-blue-900 scale-105 ring-2 ring-blue-400 text-white"
-                    : "bg-blue-100 scale-105 ring-2 ring-blue-400"
-                  : isDarkMode
-                    ? "bg-gray-800 text-white hover:bg-gray-700 hover:scale-105"
-                    : "bg-white hover:bg-gray-100 hover:scale-105"
+                className={`glass p-4 rounded-xl cursor-pointer transition-all duration-300 ${selectedTopic === topic
+                    ? "border-brand-cyan-400/60 shadow-glow-cyan scale-[1.02]"
+                    : "hover:border-brand-cyan-400/40 hover:shadow-glow-cyan hover:scale-[1.01]"
                   }`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 onClick={() => setSelectedTopic(topic)}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => e.key === "Enter" && setSelectedTopic(topic)}
               >
-                {topic}
+                <span className="text-sm md:text-base font-medium">{topic}</span>
               </motion.div>
             ))}
           </div>
         ) : (
           <motion.p
-            className={`text-gray-500 ${isDarkMode ? "text-gray-400" : "text-gray-600"
-              }`}
+            className="text-muted-foreground"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -175,51 +148,43 @@ const Articles = () => {
 
         {selectedTopic && (
           <motion.div
-            className={`mt-8 p-6 rounded-lg shadow-md ${isDarkMode ? "bg-gray-800 text-white" : "bg-blue-50"
-              }`}
-            initial={{ opacity: 0, scale: 0.9 }}
+            className="mt-10 glass rounded-2xl p-6 max-w-2xl mx-auto text-left"
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
           >
-            <h4 className="text-xl font-semibold mb-2">Selected Topic: {selectedTopic}</h4>
-            <p>Stay tuned for this exciting article coming soon! ✍️</p>
+            <h4 className="text-xl font-semibold mb-2">
+              Selected Topic: <span className="text-gradient">{selectedTopic}</span>
+            </h4>
+            <p className="text-muted-foreground">Stay tuned for this exciting article coming soon! ✍️</p>
           </motion.div>
         )}
 
-        <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
-          <Link href="/newsletter" passHref>
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+        <div className="flex flex-col sm:flex-row justify-center gap-4 mt-12">
+          <Link href="/newsletter">
+            <Button
+              className="bg-gradient-brand text-white px-6 py-6 rounded-full shadow-glow-cyan hover:shadow-glow-amber transition-all gap-2"
+              aria-label="Subscribe to my newsletter"
             >
-              <Button
-                className="bg-blue-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-                aria-label="Subscribe to my newsletter"
-              >
-                Subscribe to My Newsletter 📧
-              </Button>
-            </motion.div>
+              <Mail className="h-4 w-4" />
+              Subscribe to Newsletter
+            </Button>
           </Link>
-          <Link href="https://linkedin.com/in/mohd-uzair-33b166204" passHref>
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+          <Link href="https://linkedin.com/in/mohd-uzair-33b166204" target="_blank" rel="noopener noreferrer">
+            <Button
+              variant="outline"
+              className="px-6 py-6 rounded-full border-2 border-brand-cyan-500/40 hover:bg-brand-cyan-500/10 hover:border-brand-cyan-500 transition-colors gap-2"
+              aria-label="Connect with me on LinkedIn"
             >
-              <Button
-                className="bg-blue-700 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-800 focus:ring-2 focus:ring-blue-700 transition-all duration-200"
-                aria-label="Connect with me on LinkedIn"
-              >
-                Connect with Me on LinkedIn 🔗
-              </Button>
-            </motion.div>
+              <Linkedin className="h-4 w-4" />
+              Connect on LinkedIn
+            </Button>
           </Link>
         </div>
-      </main >
+      </main>
       <FAQ />
       <Footer />
-    </>
+    </div>
   );
 };
 

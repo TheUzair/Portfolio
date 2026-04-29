@@ -120,10 +120,7 @@ const Header = () => {
   return (
     <>
       {isLoading && <Loading />}
-      <div
-        className={`${isDarkMode ? "bg-black text-white" : "bg-white text-black"
-          }`}
-      >
+      <div className="surface-page sticky top-0 z-40 border-b border-border/40 backdrop-blur-xl bg-[hsl(var(--background)/0.75)]">
         <div className="container mx-auto px-5 pt-5 lg:px-20">
           <motion.nav
             className="flex items-center justify-between pb-3"
@@ -143,14 +140,7 @@ const Header = () => {
               }}
             >
               &lt;Next
-              <span
-                className={`bg-clip-text text-transparent ${isDarkMode
-                  ? "bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"
-                  : "bg-gradient-to-r from-blue-400 via-green-500 to-blue-600"
-                  }`}
-              >
-                Mode /&gt;
-              </span>
+              <span className="text-gradient">Mode /&gt;</span>
             </Link>
 
             <div className="lg:hidden flex items-center">
@@ -158,12 +148,12 @@ const Header = () => {
                 variant="ghost"
                 onClick={toggleTheme}
                 aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-                className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 mr-2"
+                className="p-2 rounded-full hover:bg-brand-cyan-500/10 mr-2"
               >
                 {isDarkMode ? (
-                  <Sun className="h-6 w-6 text-yellow-500" aria-hidden="true" />
+                  <Sun className="h-6 w-6 text-brand-amber-400" aria-hidden="true" />
                 ) : (
-                  <Moon className="h-6 w-6 text-gray-700" aria-hidden="true" />
+                  <Moon className="h-6 w-6 text-brand-navy-700" aria-hidden="true" />
                 )}
               </Button>
 
@@ -175,10 +165,7 @@ const Header = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   align="end"
-                  className={`w-48 flex flex-col space-y-2 p-2 rounded-md shadow-lg ${isDarkMode
-                    ? "bg-gray-800 text-white"
-                    : "bg-white text-black"
-                    }`}
+                  className="w-48 flex flex-col space-y-2 p-2 rounded-md shadow-glow-soft glass-strong"
                 >
                   {navItems.map((item) => (
                     <DropdownMenuItem
@@ -204,7 +191,7 @@ const Header = () => {
                             ? handleScroll(event, item.href)
                             : handleDelayedNavigation(event, item.href);
                         }}
-                        className={`block w-full px-4 py-2 text-left rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 ${isActiveNavItem(item) ? "text-blue-600 underline" : ""
+                        className={`block w-full px-4 py-2 text-left rounded-md hover:bg-brand-cyan-500/10 transition-colors ${isActiveNavItem(item) ? "text-gradient font-semibold" : ""
                           }`}
                       >
                         {item.name}
@@ -236,7 +223,9 @@ const Header = () => {
                       ? handleScroll(event, item.href)
                       : handleDelayedNavigation(event, item.href);
                   }}
-                  className={`font-bold my-5 transition-opacity duration-75 hover:opacity-50 ${isActiveNavItem(item) ? "text-blue-600 underline" : ""
+                  className={`relative font-semibold my-5 transition-colors hover:text-brand-cyan-500 dark:hover:text-brand-cyan-300 ${isActiveNavItem(item)
+                    ? "text-gradient after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-gradient-brand after:rounded-full"
+                    : ""
                     }`}
                 >
                   {item.name}
@@ -247,16 +236,16 @@ const Header = () => {
                 variant="ghost"
                 onClick={toggleTheme}
                 aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-                className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+                className="p-2 rounded-full hover:bg-brand-cyan-500/10"
               >
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <span className="flex items-center justify-center">
                         {isDarkMode ? (
-                          <Sun className="h-6 w-6 text-yellow-500" />
+                          <Sun className="h-6 w-6 text-brand-amber-400" />
                         ) : (
-                          <Moon className="h-6 w-6 text-gray-700" />
+                          <Moon className="h-6 w-6 text-brand-navy-700" />
                         )}
                       </span>
                     </TooltipTrigger>

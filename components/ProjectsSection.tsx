@@ -8,7 +8,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 import { Pagination, Autoplay, EffectCoverflow } from "swiper/modules";
-import { useTheme } from "@/context/ThemeContext";
 import Link from "next/link";
 
 const ProjectsSection = () => {
@@ -27,7 +26,7 @@ const ProjectsSection = () => {
         "A full-stack app for managing childcare settings with real-time updates and secure authentication.",
       imageUrl: "/nurturetech-ss.jpg",
       link: "https://nurturetech.onrender.com/",
-      tags: ["React", "Node.js", "PortgreSQL"],
+      tags: ["React", "Node.js", "PostgreSQL"],
     },
     {
       title: "PassOp - Password Manager",
@@ -63,13 +62,10 @@ const ProjectsSection = () => {
     },
   ];
 
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
-
   return (
     <section
       id="projects"
-      className="min-h-screen flex flex-col justify-center"
+      className="min-h-screen flex flex-col justify-center py-12"
     >
       <div className="flex items-center justify-between gap-8 lg:flex-row lg:gap-0">
         <motion.div
@@ -77,41 +73,28 @@ const ProjectsSection = () => {
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <h6
-            className={`bg-clip-text text-transparent mb-4 text-xl font-bold ${isDarkMode
-              ? "bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"
-              : "bg-gradient-to-r from-blue-400 via-green-500 to-blue-600"
-              }`}
-          >
-            BOUNDLESS CREATIONS
-          </h6>
-
-          <h2 className="mx-auto mb-10 max-w-[600px] text-4xl font-bold leading-[120%] tracking-[0.5px] lg:text-6xl">
-            Building Beyond Boundaries
+          <h6 className="eyebrow">Boundless Creations</h6>
+          <h2 className="mt-3 mb-10 max-w-[600px] text-4xl font-bold leading-[120%] tracking-[0.5px] lg:text-6xl">
+            Building Beyond <span className="text-gradient">Boundaries</span>
           </h2>
         </motion.div>
 
         <Link href="/projects" className="hidden md:block">
           <motion.div
-            className={`relative h-[62px] w-[200px] ${isDarkMode
-              ? "bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"
-              : "bg-gradient-to-r from-blue-400 via-green-500 to-blue-600"
-              }`}
+            className="btn-offset rounded-md"
             initial={{ opacity: 0, y: 50, x: 50 }}
             animate={{ opacity: 1, y: 0, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <button
-              className="absolute h-[66px] bg-black text-lg font-medium text-white w-[205px] transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-0 hover:translate-x-3 hover:translate-y-3 dark:bg-white dark:text-black dark:font-medium"
-              style={{ right: "8px", bottom: "8px" }}
-            >
-              Discover More Boundless Creations
-            </button>
+            <div className="h-[60px] w-[230px]" />
+            <span className="btn-offset-inner h-[64px] w-[234px] text-base px-3 rounded-md text-center">
+              Discover More Creations
+            </span>
           </motion.div>
         </Link>
       </div>
 
-      <div className="relative flex-grow">
+      <div className="relative flex-grow mt-8">
         <Swiper
           effect={"coverflow"}
           grabCursor={true}
@@ -129,9 +112,7 @@ const ProjectsSection = () => {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          pagination={{
-            clickable: true,
-          }}
+          pagination={{ clickable: true }}
           modules={[EffectCoverflow, Pagination, Autoplay]}
           className="mySwiper"
         >
@@ -144,10 +125,9 @@ const ProjectsSection = () => {
               >
                 <motion.div
                   whileHover={{ y: -10 }}
-                  className={`flex flex-col h-full p-5 shadow-lg rounded-lg transition-all duration-300 hover:shadow-xl ${isDarkMode ? "bg-gray-800" : "bg-white"
-                    }`}
+                  className="flex flex-col h-full p-5 rounded-2xl glass transition-all duration-300 hover:shadow-glow-cyan hover:border-brand-cyan-400/50"
                 >
-                  <div className="relative w-full h-48 overflow-hidden rounded-lg mb-4">
+                  <div className="relative w-full h-48 overflow-hidden rounded-xl mb-4">
                     <Image
                       src={project.imageUrl}
                       alt={`Screenshot of ${project.title}`}
@@ -157,24 +137,17 @@ const ProjectsSection = () => {
                       placeholder="blur"
                       blurDataURL="data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAQCdASoIAAUAAkA4JZQCdAEO/gHOAAD++P/YAAAA"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-900/80 via-brand-navy-900/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                       <span className="text-white font-medium">
                         View Project →
                       </span>
                     </div>
                   </div>
 
-                  <h3
-                    className={`text-2xl font-bold mb-2 ${isDarkMode ? "text-white" : "text-gray-900"
-                      }`}
-                  >
+                  <h3 className="text-2xl font-bold mb-2">
                     {project.title}
                   </h3>
-
-                  <p
-                    className={`text-sm lg:text-base mb-4 ${isDarkMode ? "text-gray-300" : "text-gray-600"
-                      }`}
-                  >
+                  <p className="text-sm lg:text-base mb-4 text-muted-foreground">
                     {project.description}
                   </p>
 
@@ -183,22 +156,14 @@ const ProjectsSection = () => {
                       {project.tags.map((tag, i) => (
                         <span
                           key={i}
-                          className={`text-xs px-2 py-1 rounded-full ${isDarkMode
-                            ? "bg-gray-700 text-gray-200"
-                            : "bg-gray-100 text-gray-800"
-                            }`}
+                          className="text-xs px-2.5 py-1 rounded-full bg-brand-cyan-500/10 text-brand-cyan-700 dark:text-brand-cyan-300 border border-brand-cyan-500/20 font-medium"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    <div
-                      className={`w-full py-2 px-4 rounded-lg text-center font-medium transition-colors ${isDarkMode
-                        ? "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
-                        : "bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white"
-                        }`}
-                    >
+                    <div className="w-full py-2 px-4 rounded-lg text-center font-medium bg-gradient-brand text-white shadow-glow-cyan transition-shadow hover:shadow-glow-amber">
                       Explore Project
                     </div>
                   </div>
@@ -211,20 +176,15 @@ const ProjectsSection = () => {
 
       <Link href="/projects" className="block md:hidden mt-10 mx-auto">
         <motion.div
-          className={`relative h-[62px] w-[200px] ${isDarkMode
-            ? "bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"
-            : "bg-gradient-to-r from-blue-400 via-green-500 to-blue-600"
-            }`}
+          className="btn-offset rounded-md"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <button
-            className="absolute h-[66px] bg-black text-lg font-medium text-white w-[205px] transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-0 hover:translate-x-3 hover:translate-y-3 dark:bg-white dark:text-black dark:font-medium"
-            style={{ right: "8px", bottom: "8px" }}
-          >
-            Discover More Boundless Creations
-          </button>
+          <div className="h-[60px] w-[230px]" />
+          <span className="btn-offset-inner h-[64px] w-[234px] text-base px-3 rounded-md text-center">
+            Discover More Creations
+          </span>
         </motion.div>
       </Link>
     </section>
