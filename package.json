@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "npm install && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "screenshots": "tsx scripts/screenshots.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -44,6 +45,9 @@
     "@types/react": "19.2.14",
     "eslint": "^8.57.1",
     "eslint-config-next": "15.0.3",
+    "playwright": "^1.59.1",
+    "sharp": "^0.34.5",
+    "tsx": "^4.21.0",
     "typescript": "6.0.3"
   }
 }

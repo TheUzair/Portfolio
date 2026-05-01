@@ -2,94 +2,86 @@ import type { Project } from './types';
 
 export const projects: Project[] = [
   {
-    id: 'get-me-a-chai',
-    title: 'Get Me A Chai',
+    id: 'golfdraw',
+    title: 'GolfDraw',
     overview:
-      'A web app for micro-donations, featuring user authentication and real-time payment tracking.',
+      'Subscription platform where golfers track Stableford scores, enter monthly prize draws, and support charities.',
     description:
-      `Get-Me-A-Chai is a crowdfunding platform built with Next.js that empowers creators to receive direct support from their fans. The application offers features such as user authentication, personalized dashboards, and secure payment processing via Razorpay. Visitors can quickly learn about the platform's mission of supporting creative projects through "chai" purchases. The platform fosters a supportive community where fans can collaborate, contribute financially, and engage with creators.`,
-    imageUrl: '/chai.jpg',
-    link: 'https://get-me-a-chai-pi.vercel.app/',
-    technologies: ['Next.js', 'React', 'Razorpay', 'MongoDB', 'Tailwind CSS'],
-    github: 'https://github.com/TheUzair/get-me-a-chai',
+      'GolfDraw turns every round of golf into an opportunity. Subscribers enter up to 5 Stableford scores each month as lottery draw numbers. When the monthly draw runs, matching numbers win a share of the prize pool — and a portion of every subscription goes directly to the charity of the player\'s choice. Features Stripe subscriptions, role-based access, admin draw management, winner verification, multilingual i18n, and multi-currency support.',
+    imageUrl: '/golfdraw-ss.jpg',
+    link: 'https://golf-platform-delta-three.vercel.app',
+    technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Stripe', 'NextAuth', 'next-intl', 'Tailwind CSS'],
+    github: 'https://github.com/TheUzair/GolfDraw',
   },
   {
-    id: 'nurturetech',
-    title: 'NurtureTech',
+    id: 'hcpulse-ai',
+    title: 'HCPulse AI',
     overview:
-      'A full-stack app for managing childcare settings with real-time updates and secure authentication.',
+      'AI-powered CRM for pharmaceutical field reps to log and manage healthcare professional interactions using natural language.',
     description:
-      'The NurtureTech project is a comprehensive full-stack application designed to manage and track attendance, caregiver information, child enrollments, and financial records for childcare or educational settings. It includes a backend server for API management and a frontend client for user interaction, featuring real-time updates, caching, robust authentication mechanisms, and seamless integration with Neon PostgreSQL for database management.',
-    imageUrl: '/nurture.jpg',
-    link: 'https://nurturetech.onrender.com/',
-    technologies: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Socket.io'],
-    github: 'https://github.com/TheUzair/nurturetech',
+      'HCPulse AI replaces manual data entry with an AI chat assistant powered by LangGraph and Groq LLMs. Field reps describe their HCP interactions in plain English — the AI agent automatically extracts structured data, logs it to the database, and provides intelligent follow-up suggestions. Features dual-mode interaction logging (form + chat), 5 specialized AI tools, real-time Redux form-chat sync, and an HCP directory with analytics dashboard.',
+    imageUrl: '/hcpulse-ai-ss.jpg',
+    link: 'https://hc-pulse-ai.vercel.app/',
+    technologies: ['Next.js', 'FastAPI', 'Python', 'LangGraph', 'Groq', 'PostgreSQL', 'Redux Toolkit', 'SQLAlchemy'],
+    github: 'https://github.com/TheUzair/HCPulse-AI',
   },
   {
-    id: 'passop',
-    title: 'PassOp - Password Manager',
+    id: 'rag-chatbot',
+    title: 'RAG AI',
     overview:
-      'An open-source password manager with real-time syncing and a user-friendly interface.',
+      'Paste any public URL and have a natural AI conversation grounded strictly in that page\'s content.',
     description:
-      'PassOp is a secure password management application built with React and Vite, featuring a MongoDB backend. It provides users with a reliable solution for storing and managing passwords securely. The application supports real-time syncing across devices, ensuring that users have access to their credentials whenever needed.',
-    imageUrl: '/password.jpg',
-    link: 'https://pass-op-olive.vercel.app/',
-    technologies: ['React', 'Vite', 'MongoDB', 'Express', 'Node.js'],
-    github: 'https://github.com/TheUzair/passop',
+      'RAG AI is a production-grade Retrieval-Augmented Generation chatbot built with Next.js 16. It uses Puppeteer to scrape meaningful content from any public URL, stores it as vector embeddings in Weaviate, and streams AI answers via Groq\'s LLaMA 3.3-70b model. Every response includes source citations linking back to the original page. Features streaming word-by-word responses, collapsible sidebar with search history, dark/light/system theme, and skeleton loaders.',
+    imageUrl: '/rag-chatbot-ss.jpg',
+    link: 'https://rag-chatbot-eta.vercel.app/',
+    technologies: ['Next.js', 'Groq', 'Weaviate', 'Puppeteer', 'Redux Toolkit', 'Tailwind CSS'],
+    github: 'https://github.com/TheUzair/RAG-Chatbot',
+  },
+  {
+    id: 'flexora',
+    title: 'Flexora',
+    overview:
+      'Production-ready Shopify-inspired e-commerce storefront for a premium athleisure brand.',
+    description:
+      'FLEXORA is a full-featured e-commerce storefront built with Next.js 15 and TypeScript. It includes a product catalogue of 8 items with size/colour variants, a slide-out cart drawer with Zustand persistence, discount code validation (FLEX15, FREESHIP, BUNDLE20, NEWDROP10), mock checkout with order confirmation, PDP with sticky ATC bar, size guide modal, and a dark-mode-first brand identity using electric lime accents.',
+    imageUrl: '/flexora-ss.jpg',
+    link: 'https://flexora-two.vercel.app/',
+    technologies: ['Next.js', 'TypeScript', 'Zustand', 'TanStack Query', 'Framer Motion', 'Tailwind CSS', 'Shadcn UI'],
+    github: 'https://github.com/TheUzair/Flexora',
   },
   {
     id: 'edutrack360',
     title: 'EduTrack360',
     overview:
-      'A comprehensive school management system for tracking student activities, awards, and academic records.',
+      'Comprehensive school management system for tracking student activities, awards, and academic records.',
     description:
-      'EduTrack360 is a comprehensive school management system designed to track and manage various aspects of student life, including behavioral records, extracurricular activities, academic achievements, class sections, and more. This application provides a user-friendly interface for managing and visualizing student data while supporting role-based access control to ensure appropriate permissions.',
-    imageUrl: '/records.jpg',
+      'EduTrack360 is a full-stack school management platform designed to track behavioral records, extracurricular activities, academic achievements, class sections, and academic terms. Built with React (Vite) + Node.js/Express + MongoDB, it features role-based access control for admins, teachers, and students, a fully responsive UI with Shadcn UI components, and real-time data management.',
+    imageUrl: '/edutrack360-ss.jpg',
     link: 'https://edutrack360.onrender.com',
-    technologies: [
-      'React',
-      'Node.js',
-      'MongoDB',
-      'School Management',
-      'Education Technology',
-      'Tailwind CSS',
-      'Shadcn UI',
-    ],
-    github: 'https://github.com/TheUzair/edutrack360',
+    technologies: ['React', 'Vite', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS', 'Shadcn UI'],
+    github: 'https://github.com/TheUzair/EduTrack360',
   },
   {
-    id: 'form-builder',
-    title: 'Form Builder',
+    id: 'get-me-a-chai',
+    title: 'Get Me A Chai',
     overview:
-      'An interactive platform for creating and managing diverse question types with drag-and-drop functionality.',
+      'Crowdfunding platform for creators with Razorpay payments, personalized dashboards, and top-supporters list.',
     description:
-      'Form Builder is an interactive platform designed to streamline the creation, management, and assessment of various question formats such as comprehension, cloze, and categorization questions. It provides educators and learners with a flexible and user-friendly interface, offering innovative tools to enhance the learning process.',
-    imageUrl: '/form.jpg',
-    link: 'https://formbuilder-6s1k.onrender.com/',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Drag-and-Drop API'],
-    github: 'https://github.com/TheUzair/form-builder',
-  },
-  {
-    id: 'bitlinks',
-    title: 'BitLinks',
-    overview:
-      'A URL shortening service with custom links, real-time analytics, and a user-friendly dashboard.',
-    description:
-      'Bitlinks is a URL shortening service built with Next.js, allowing users to generate shortened versions of long URLs, making them easier to share and manage. The service offers custom links, real-time analytics, and a user-friendly dashboard for tracking link performance.',
-    imageUrl: '/links.jpg',
-    link: 'https://bit-links-blush.vercel.app/',
-    technologies: ['React', 'MongoDB', 'Node.js'],
-    github: 'https://github.com/TheUzair/bitlinks',
+      'Get-Me-A-Chai is a crowdfunding platform built with Next.js that empowers creators to receive direct support from their fans. The application offers user authentication via NextAuth (GitHub + Google), personalized dashboards, and secure payment processing via Razorpay. Fans can buy a "chai" to fund creative projects, view top supporters, and engage with the creator community.',
+    imageUrl: '/get-me-a-chai-ss.jpg',
+    link: 'https://get-me-a-chai-pi.vercel.app/',
+    technologies: ['Next.js', 'NextAuth', 'Razorpay', 'MongoDB', 'Tailwind CSS'],
+    github: 'https://github.com/TheUzair/Get-Me-A-Chai',
   },
 ];
 
 export const projectImageMap: Record<string, string> = {
-  'get-me-a-chai': '/gmac.jpg',
-  nurturetech: '/ntclient.jpg',
-  passop: '/pm.jpg',
-  edutrack360: '/sr.jpg',
-  'form-builder': '/fb.jpg',
-  bitlinks: '/bl.jpg',
+  golfdraw: '/golfdraw-ss.jpg',
+  'hcpulse-ai': '/hcpulse-ai-ss.jpg',
+  'rag-chatbot': '/rag-chatbot-ss.jpg',
+  flexora: '/flexora-ss.jpg',
+  edutrack360: '/edutrack360-ss.jpg',
+  'get-me-a-chai': '/get-me-a-chai-ss.jpg',
 };
 
 // ─── About skills ────────────────────────────────────────────────────────────

@@ -2,10 +2,10 @@ import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Projects | NextMode — Mohd Uzair",
+  title: "Projects | Mohd Uzair",
   description: "Explore full-stack projects by Mohd Uzair — Next.js, React, Node.js, PostgreSQL, and more.",
   openGraph: {
-    title: "Projects | NextMode — Mohd Uzair",
+    title: "Projects | Mohd Uzair",
     description: "Explore full-stack projects by Mohd Uzair.",
     url: "https://mohd-uzair.vercel.app/projects",
     siteName: "Mohd Uzair's Portfolio",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Projects | NextMode — Mohd Uzair",
+    title: "Projects | Mohd Uzair",
     description: "Full-stack projects by Mohd Uzair.",
     creator: "@TheUzair4",
   },

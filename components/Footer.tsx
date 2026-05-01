@@ -73,9 +73,14 @@ const Footer = () => {
 
           <div className="flex flex-col md:flex-row md:justify-between items-start md:items-start gap-10 md:gap-0">
             <div className="flex flex-col items-start">
-              <h2 className="font-medium italic text-lg sm:text-xl md:text-2xl lg:text-3xl lg:font-bold">
-                &lt;Next<span className="text-gradient">Mode /&gt;</span>
-              </h2>
+              <div className="inline-flex items-center gap-2">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-gradient-brand text-white text-sm font-extrabold shadow-glow-cyan">
+                  MU
+                </span>
+                <span className="text-xl font-bold lg:text-2xl">
+                  Mohd <span className="text-gradient">Uzair</span>
+                </span>
+              </div>
               <p className="py-2 text-base lg:text-lg text-muted-foreground">
                 Delhi - NCR, India
               </p>
@@ -143,11 +148,7 @@ const Footer = () => {
 
           <div className="text-center mt-8 text-sm font-medium text-muted-foreground">
             <p>
-              &copy; {currentYear}{" "}
-              <span className="italic">
-                &lt;Next<span className="text-gradient">Mode</span>/&gt;
-              </span>{" "}
-              All rights reserved.
+              &copy; {currentYear} Mohd Uzair. All rights reserved.
             </p>
             <p className="mt-2 text-xs">
               Built with NextJS, Shadcn/UI, and Framer Motion.

@@ -7,9 +7,9 @@ import JsonLd from "@/components/JsonLd";
 
 export const metadata = {
   metadataBase: new URL("https://mohd-uzair.vercel.app"),
-  title: "NextMode | Full-Stack Development",
+  title: "Mohd Uzair — Full-Stack Engineer",
   description:
-    "Explore Mohd Uzair's portfolio as a full-stack developer crafting efficient web applications.",
+    "Portfolio of Mohd Uzair, a full-stack engineer crafting efficient, performant web applications with Next.js, React, Node.js & cloud platforms.",
   keywords:
     "full-stack developer, web development, portfolio, user experience, web applications, NextJS, React, Tailwind CSS",
   authors: [{ name: "Mohd Uzair", url: "https://mohd-uzair.vercel.app" }],
@@ -17,7 +17,7 @@ export const metadata = {
   publisher: "Mohd Uzair",
   charset: "UTF-8",
   openGraph: {
-    title: "NextMode | Full-Stack Development",
+    title: "Mohd Uzair — Full-Stack Engineer",
     description:
       "Discover the work of Mohd Uzair, a passionate full-stack developer focused on creating beautiful web applications.",
     type: "website",
@@ -30,7 +30,7 @@ export const metadata = {
     card: "summary_large_image",
     site: "@TheUzair4",
     creator: "@TheUzair4",
-    title: "NextMode | Full-Stack Development",
+    title: "Mohd Uzair — Full-Stack Engineer",
     description:
       "Explore the portfolio of Mohd Uzair, a dedicated full-stack developer.",
     image: "https://mohd-uzair.vercel.app/og-image.jpg",

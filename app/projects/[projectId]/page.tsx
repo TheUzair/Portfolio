@@ -13,7 +13,7 @@ export async function generateMetadata({
   const project = projects.find((p) => p.id === projectId);
   if (!project) return { title: 'Project Not Found' };
   return {
-    title: `${project.title} | NextMode Portfolio`,
+    title: `${project.title} | Mohd Uzair`,
     description: project.overview,
     openGraph: {
       title: project.title,

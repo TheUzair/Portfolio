@@ -1,4 +1,4 @@
-import { escapeHtml } from './html';
+import { escapeHtml } from '../html';
 
 export interface AdminEmailData {
   firstName: string;

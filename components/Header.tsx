@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, Sun, Moon } from "lucide-react";
+import { Menu, Sun, Moon, ArrowUp } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuItem,
@@ -30,6 +30,50 @@ const Header = () => {
   const [activeSection, setActiveSection] = useState("/");
   const [isClient, setIsClient] = useState(false);
   const { isLoading, startLoading } = useNavigationLoader();
+
+  // ── Headroom (hide-on-scroll-down / show-on-scroll-up) ──────────────────
+  const [isHidden, setIsHidden] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const lastScrollY = useRef(0);
+
+  // Measure header height so the spacer div always matches
+  useEffect(() => {
+    const measure = () => {
+      if (headerRef.current) setHeaderHeight(headerRef.current.offsetHeight);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  // Hide when scrolling down past threshold; reveal on any upward scroll
+  useEffect(() => {
+    const HIDE_THRESHOLD = 80; // px — don't hide until past this point
+    const DELTA = 6;           // px — minimum movement to trigger state change
+
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY.current;
+
+      if (currentY < HIDE_THRESHOLD) {
+        setIsHidden(false);
+      } else if (delta > DELTA) {
+        setIsHidden(true);  // scrolling down
+      } else if (delta < -DELTA) {
+        setIsHidden(false); // scrolling up
+      }
+
+      setShowScrollTop(currentY > 300);
+
+      lastScrollY.current = currentY;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  // ────────────────────────────────────────────────────────────────────────
 
   useEffect(() => {
     const updateActiveSection = () => {
@@ -120,7 +164,12 @@ const Header = () => {
   return (
     <>
       {isLoading && <Loading />}
-      <div className="surface-page sticky top-0 z-40 border-b border-border/40 backdrop-blur-xl bg-[hsl(var(--background)/0.75)]">
+      <motion.div
+        ref={headerRef}
+        className="fixed inset-x-0 top-0 z-40 w-full border-b border-border/40 backdrop-blur-xl bg-[hsl(var(--background)/0.75)]"
+        animate={{ y: isHidden ? "-100%" : "0%" }}
+        transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
         <div className="container mx-auto px-5 pt-5 lg:px-20">
           <motion.nav
             className="flex items-center justify-between pb-3"
@@ -129,7 +178,7 @@ const Header = () => {
             transition={{ duration: 0.5 }}
           >
             <Link
-              className="text-xs font-medium italic sm:text-base md:text-2xl lg:font-bold"
+              className="group inline-flex items-center gap-2 text-base font-bold tracking-tight sm:text-lg md:text-2xl"
               href="/"
               onClick={(e) => {
                 if (pathname === "/") {
@@ -138,9 +187,14 @@ const Header = () => {
                   startLoading("/");
                 }
               }}
+              aria-label="Mohd Uzair — home"
             >
-              &lt;Next
-              <span className="text-gradient">Mode /&gt;</span>
+              <span className="inline-flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-md bg-gradient-brand text-white text-sm sm:text-base font-extrabold shadow-glow-cyan group-hover:shadow-glow-amber transition-shadow">
+                MU
+              </span>
+              <span className="leading-none">
+                Mohd <span className="text-gradient">Uzair</span>
+              </span>
             </Link>
 
             <div className="lg:hidden flex items-center">
@@ -258,7 +312,21 @@ const Header = () => {
             </div>
           </motion.nav>
         </div>
-      </div>
+      </motion.div>
+      {/* Spacer: reserves the header's height so page content isn't hidden underneath */}
+      <div style={{ height: headerHeight }} aria-hidden="true" />
+
+      {/* Scroll-to-top button */}
+      <motion.button
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Scroll to top"
+        initial={false}
+        animate={{ opacity: showScrollTop ? 1 : 0, scale: showScrollTop ? 1 : 0.7, pointerEvents: showScrollTop ? "auto" : "none" }}
+        transition={{ duration: 0.22, ease: "easeOut" }}
+        className="fixed bottom-6 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-brand shadow-glow-cyan hover:shadow-glow-amber focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan-500 transition-shadow"
+      >
+        <ArrowUp className="h-5 w-5 text-white" strokeWidth={2.5} />
+      </motion.button>
     </>
   );
 };
