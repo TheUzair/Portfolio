@@ -4,7 +4,6 @@ import React from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
-import ProjectsSection from "./ProjectsSection";
 
 interface ServiceCard {
   icon: string; // base name (s1/s2/s3)
@@ -138,7 +137,6 @@ const Services = () => {
           </div>
         </section>
 
-        <ProjectsSection />
       </motion.div>
     </div>
   );

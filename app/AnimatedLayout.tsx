@@ -11,6 +11,7 @@ import About from "@/components/About";
 import Loading from "@/components/Loading";
 
 // Heavy below-fold sections loaded only when needed
+const ProjectsSection = dynamic(() => import("@/components/ProjectsSection"), { ssr: false });
 const EduExp = dynamic(() => import("@/components/EduExp"), { ssr: false });
 const FAQ = dynamic(() => import("@/components/FAQ"), { ssr: false });
 const Footer = dynamic(() => import("@/components/Footer"), { ssr: false });
@@ -84,6 +85,7 @@ export default function AnimatedLayout() {
           <Header />
           <Hero />
           <Services />
+          <ProjectsSection />
           <About />
           <EduExp />
           <FAQ />

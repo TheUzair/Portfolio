@@ -37,11 +37,11 @@ const Footer = () => {
   const socialLinks = [
     { label: "Leetcode", href: "https://leetcode.com/u/Mohd_Uzair", icon: Code2 },
     { label: "Github", href: "https://github.com/TheUzair", icon: Github },
-    { label: "Linkedin", href: "https://linkedin.com/in/mohd-uzair-33b166204", icon: Linkedin },
+    { label: "Linkedin", href: "https://www.linkedin.com/in/mohd--uzair", icon: Linkedin },
   ];
 
   return (
-    <footer className="surface-page relative overflow-hidden border-t border-border/40">
+    <footer className="surface-page relative overflow-hidden border-t border-border/40 min-h-screen flex flex-col justify-center">
       <div className="blob blob-cyan w-[500px] h-[500px] -top-40 -left-20 opacity-15" />
       <div className="blob blob-amber w-[400px] h-[400px] bottom-0 right-0 opacity-15" style={{ animationDelay: "6s" }} />
 

@@ -29,7 +29,6 @@ const Hero = () => {
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="flex-1 md:w-1/2"
           >
-            <span className="eyebrow mb-4">Full-Stack Engineer · Delhi-NCR</span>
             <h1 className="mt-3 mb-4 text-4xl font-bold leading-[110%] md:text-5xl lg:text-6xl">
               {["Creating", "Fullstack", "Systems that Inspire and Deliver."].map((text, index) => (
                 <span key={index} className="text-gradient">
@@ -91,14 +90,14 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3, ease: "easeInOut" }}
             className="flex-1 md:w-1/2 flex justify-center"
           >
-            <div className="hidden md:block w-[400px] h-[400px] md:w-[530px] md:h-[530px] relative">
+            <div className="hidden md:block w-full max-w-[300px] lg:max-w-[460px] aspect-square relative">
               {/* Glow ring behind image */}
               <div className="absolute inset-0 rounded-full bg-gradient-brand opacity-30 blur-2xl scale-95" aria-hidden="true" />
               <Image
                 alt="Mohd Uzair — Full-Stack Developer"
                 fetchPriority="high"
                 fill
-                sizes="(max-width: 768px) 0px, (max-width: 1200px) 530px, 530px"
+                sizes="(max-width: 767px) 0px, (max-width: 1023px) 300px, 460px"
                 priority
                 className="rounded-full object-cover ring-glow relative"
                 src="/user.jpg?v=3"

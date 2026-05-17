@@ -85,7 +85,7 @@ const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="relative py-20 overflow-hidden"
+      className="relative py-20 overflow-hidden min-h-screen"
     >
       <div className="blob blob-cyan w-[420px] h-[420px] -top-20 -left-10 opacity-15" />
       <div
@@ -93,7 +93,7 @@ const ProjectsSection = () => {
         style={{ animationDelay: "5s" }}
       />
 
-      <div className="relative">
+      <div className="container mx-auto px-5 relative">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -125,7 +125,7 @@ const ProjectsSection = () => {
           {bentoProjects.map((project, index) => (
             <motion.article
               key={project.title}
-              className={`${project.span} group relative overflow-hidden rounded-2xl glass hover:border-brand-cyan-400/50 hover:shadow-glow-cyan transition-all duration-300`}
+              className={`${project.span} group relative overflow-hidden rounded-2xl glass hover:border-brand-cyan-400/50 hover:shadow-glow-cyan transition-all duration-300 ${project.featured ? "h-72 md:h-auto" : "h-56 md:h-auto"}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}

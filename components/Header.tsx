@@ -1,16 +1,10 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, Sun, Moon, ArrowUp } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-} from "@/components/ui/dropdown-menu";
+import { Menu, X, Sun, Moon, ArrowUp, ChevronRight } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -29,6 +23,7 @@ const Header = () => {
   const router = useRouter();
   const [activeSection, setActiveSection] = useState("/");
   const [isClient, setIsClient] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isLoading, startLoading } = useNavigationLoader();
 
   // ── Headroom (hide-on-scroll-down / show-on-scroll-up) ──────────────────
@@ -197,12 +192,12 @@ const Header = () => {
               </span>
             </Link>
 
-            <div className="lg:hidden flex items-center">
+            <div className="lg:hidden flex items-center gap-1">
               <Button
                 variant="ghost"
                 onClick={toggleTheme}
                 aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-                className="p-2 rounded-full hover:bg-brand-cyan-500/10 mr-2"
+                className="p-2 rounded-full hover:bg-brand-cyan-500/10"
               >
                 {isDarkMode ? (
                   <Sun className="h-6 w-6 text-brand-amber-400" aria-hidden="true" />
@@ -210,50 +205,13 @@ const Header = () => {
                   <Moon className="h-6 w-6 text-brand-navy-700" aria-hidden="true" />
                 )}
               </Button>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost">
-                    <Menu className="h-6 w-6" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  align="end"
-                  className="w-48 flex flex-col space-y-2 p-2 rounded-md shadow-glow-soft glass-strong"
-                >
-                  {navItems.map((item) => (
-                    <DropdownMenuItem
-                      asChild
-                      key={item.name}
-                      className="w-full"
-                    >
-                      <a
-                        href={item.href}
-                        onClick={(event) => {
-                          if (
-                            pathname === item.href ||
-                            (item.href === "/" && pathname === "/") ||
-                            (item.href.startsWith("/#") && pathname === "/")
-                          ) {
-                            event.preventDefault();
-                            if (item.href.startsWith("/#")) {
-                              handleScroll(event, item.href);
-                            }
-                            return;
-                          }
-                          item.href === "/" || item.href.startsWith("/#")
-                            ? handleScroll(event, item.href)
-                            : handleDelayedNavigation(event, item.href);
-                        }}
-                        className={`block w-full px-4 py-2 text-left rounded-md hover:bg-brand-cyan-500/10 transition-colors ${isActiveNavItem(item) ? "text-gradient font-semibold" : ""
-                          }`}
-                      >
-                        {item.name}
-                      </a>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <button
+                onClick={() => setMobileMenuOpen(true)}
+                aria-label="Open navigation menu"
+                className="inline-flex items-center justify-center h-9 w-9 rounded-full hover:bg-brand-cyan-500/10 transition-colors"
+              >
+                <Menu className="h-6 w-6" />
+              </button>
             </div>
 
             <div className="hidden gap-6 font-medium lg:flex xl:gap-8 items-center">
@@ -327,6 +285,92 @@ const Header = () => {
       >
         <ArrowUp className="h-5 w-5 text-white" strokeWidth={2.5} />
       </motion.button>
+
+      {/* Full-screen mobile navigation overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="fixed inset-0 z-50 flex flex-col bg-[hsl(var(--background))] lg:hidden"
+          >
+            {/* Top bar */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-border/40">
+              <div className="inline-flex items-center gap-2">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-gradient-brand text-white text-sm font-extrabold shadow-glow-cyan">
+                  MU
+                </span>
+                <span className="font-bold text-lg leading-none">
+                  Mohd <span className="text-gradient">Uzair</span>
+                </span>
+              </div>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close menu"
+                className="inline-flex items-center justify-center h-9 w-9 rounded-full hover:bg-brand-cyan-500/10 transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            {/* Nav links */}
+            <nav className="flex flex-col gap-1 px-4 py-6 flex-1 overflow-y-auto">
+              {navItems.map((item, index) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, x: 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 + index * 0.055, duration: 0.28 }}
+                >
+                  <a
+                    href={item.href}
+                    onClick={(event) => {
+                      setMobileMenuOpen(false);
+                      if (
+                        pathname === item.href ||
+                        (item.href === "/" && pathname === "/") ||
+                        (item.href.startsWith("/#") && pathname === "/")
+                      ) {
+                        event.preventDefault();
+                        if (item.href.startsWith("/#")) {
+                          handleScroll(event, item.href);
+                        }
+                        return;
+                      }
+                      item.href === "/" || item.href.startsWith("/#")
+                        ? handleScroll(event, item.href)
+                        : handleDelayedNavigation(event, item.href);
+                    }}
+                    className={`flex items-center justify-between w-full px-4 py-4 text-xl font-semibold rounded-xl hover:bg-brand-cyan-500/10 hover:text-brand-cyan-500 dark:hover:text-brand-cyan-300 transition-colors ${isActiveNavItem(item) ? "text-gradient" : ""
+                      }`}
+                  >
+                    {item.name}
+                    <ChevronRight className="h-5 w-5 opacity-30" />
+                  </a>
+                </motion.div>
+              ))}
+            </nav>
+
+            {/* Bottom theme toggle */}
+            <div className="px-6 py-5 border-t border-border/40">
+              <button
+                onClick={toggleTheme}
+                className="inline-flex items-center gap-3 w-full px-4 py-3 rounded-xl hover:bg-brand-cyan-500/10 transition-colors font-medium"
+              >
+                {isDarkMode ? (
+                  <Sun className="h-5 w-5 text-brand-amber-400" />
+                ) : (
+                  <Moon className="h-5 w-5 text-brand-navy-700" />
+                )}
+                <span className="text-sm">{isDarkMode ? "Light mode" : "Dark mode"}</span>
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
